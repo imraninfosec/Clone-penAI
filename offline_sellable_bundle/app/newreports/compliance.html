@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance &amp; Security Posture Summary - {{COMPANY_NAME}}</title>
+    <link rel="stylesheet" href="report-styles.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+            .page-break { page-break-before: always; page-break-after: auto; }
+        }
+    </style>
+</head>
+<body class="executive-report compliance-report">
+    <!-- Print Controls -->
+    <div class="print-controls no-print">
+        <button onclick="window.print()" class="print-btn">
+            <i class="fas fa-print"></i> Print Report
+        </button>
+        <button onclick="downloadPDF()" class="download-btn">
+            <i class="fas fa-download"></i> Download PDF
+        </button>
+        <button onclick="window.history.back()" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </button>
+    </div>
+
+    <!-- Cover Page -->
+    <div class="report-page cover-page page-break">
+        <div class="cover-header">
+            <div class="company-logo">
+                <div class="logo-icon"><img src="{{LOGO_SRC}}" alt="{{PRODUCT_BRAND_NAME}} logo" class="report-logo-img"></div>
+                <div class="company-info">
+                    <h1>{{COMPANY_NAME}}</h1>
+                    <p>{{SECURITY_DIVISION}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cover-content">
+            <div class="report-title-section">
+                <div class="confidentiality-banner">CONFIDENTIAL - COMPLIANCE SUMMARY</div>
+                <h1 class="report-title">
+                    COMPLIANCE &amp; SECURITY POSTURE<br/>
+                    <span class="report-subtitle">Summary Report</span>
+                </h1>
+            </div>
+
+            <div class="target-info">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Target URL:</span>
+                        <span class="info-value">{{TARGET_URL}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Assessment Period:</span>
+                        <span class="info-value">{{ASSESSMENT_PERIOD}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Report Date:</span>
+                        <span class="info-value">{{REPORT_DATE}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Report ID:</span>
+                        <span class="info-value">{{REPORT_ID}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Classification:</span>
+                        <span class="info-value classification">CONFIDENTIAL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cover-footer">
+            <div class="footer-text">
+                <p>This document contains confidential and proprietary information.</p>
+                <p>© 2026 {{COMPANY_NAME}}. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="report-page toc-page page-break">
+        <h1 class="page-title">TABLE OF CONTENTS</h1>
+        <div class="toc-content">
+            <div class="toc-item">
+                <span class="toc-number">1</span>
+                <span class="toc-title">POSTURE SNAPSHOT</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page-number">3</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-number">2</span>
+                <span class="toc-title">HEATMAP SUMMARY</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page-number">4</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-number">3</span>
+                <span class="toc-title">FRAMEWORK ALIGNMENT</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page-number">5</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-number">4</span>
+                <span class="toc-title">FINDINGS TO FRAMEWORK MAPPING</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page-number">6</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-number">5</span>
+                <span class="toc-title">APPENDIX: REMEDIATION SUMMARY</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page-number">7</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Posture Snapshot -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">1</h1>
+            <h1 class="section-title">POSTURE SNAPSHOT</h1>
+        </div>
+        <div class="content-section">
+            {{POSTURE_SNAPSHOT_BLOCK}}
+        </div>
+    </div>
+
+    <!-- Heatmap -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">2</h1>
+            <h1 class="section-title">HEATMAP SUMMARY</h1>
+        </div>
+        <div class="content-section">
+            {{HEATMAP_BLOCK}}
+        </div>
+    </div>
+
+    <!-- Framework Alignment -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">3</h1>
+            <h1 class="section-title">FRAMEWORK ALIGNMENT</h1>
+        </div>
+        <div class="content-section">
+            <p class="section-intro">
+                This section provides a high-level mapping of observed findings to commonly used security and compliance
+                frameworks. Mapping is provided to support reporting and governance workflows; finalize exact control IDs
+                with the GRC owner and system context.
+            </p>
+            {{FRAMEWORK_BLOCK}}
+        </div>
+    </div>
+
+    <!-- Findings Mapping -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">4</h1>
+            <h1 class="section-title">FINDINGS TO FRAMEWORK MAPPING</h1>
+        </div>
+        <div class="content-section">
+            {{MAPPING_TABLE}}
+        </div>
+    </div>
+
+    <!-- Appendix -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">5</h1>
+            <h1 class="section-title">APPENDIX: REMEDIATION SUMMARY</h1>
+        </div>
+        <div class="content-section">
+            {{REMEDIATION_APPENDIX}}
+        </div>
+
+        <div class="content-section">
+            <div class="conclusion-section">
+                <h3>Report Metadata</h3>
+                <div class="report-metadata">
+                    <p><strong>Report ID:</strong> {{REPORT_ID}}</p>
+                    <p><strong>Classification:</strong> CONFIDENTIAL</p>
+                    <p><strong>Audience:</strong> CIDO / IT Security / Senior Management</p>
+                    <p><strong>Generated:</strong> {{REPORT_DATE}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,66 @@
+/* Scan Results */
+.scan-results {
+    background: #0f172a;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px;
+    font-family: monospace;
+    font-size: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.results-success {
+    border-left: 4px solid #10b981;
+}
+
+.results-error {
+    border-left: 4px solid #ef4444;
+}
+
+.results-warning {
+    border-left: 4px solid #fbbf24;
+}
+
+/* Tool Icons */
+.tool-icon {
+    font-size: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* System Health Panel */
+.system-health {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.health-item {
+    background: #1e293b;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    color: #e2e8f0;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.health-item.good {
+    border: 1px solid #10b981;
+    background: #0f172a;
+}
+
+.health-item.warning {
+    border: 1px solid #fbbf24;
+    background: #0f172a;
+}
+
+.health-item.bad {
+    border: 1px solid #ef4444;
+    background: #0f172a;
+}

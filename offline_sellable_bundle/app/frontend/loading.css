@@ -1,0 +1,805 @@
+#loadingOverlay * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #loadingOverlay {
+            font-family: 'Courier New', monospace;
+            background: #0a0e27;
+            overflow: hidden;
+            position: relative;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        #loadingOverlay.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #loadingOverlay .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(74, 222, 128, 0.12), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(22, 163, 74, 0.1), transparent 42%),
+                linear-gradient(160deg, #07171d 0%, #0d2330 52%, #07151f 100%);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+            will-change: opacity, transform;
+            backface-visibility: hidden;
+        }
+
+        /* Animated grid background */
+        #loadingOverlay .grid-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(74, 222, 128, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(74, 222, 128, 0.035) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Scanning lines effect */
+        #loadingOverlay .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent,
+                rgba(64, 216, 130, 0.88) 28%,
+                rgba(122, 244, 170, 0.98) 50%,
+                rgba(64, 216, 130, 0.88) 72%,
+                transparent
+            );
+            transform: translate3d(0, -12vh, 0);
+            animation: scanFast 0.95s linear infinite;
+            box-shadow: 0 0 8px rgba(74, 222, 128, 0.48), 0 0 20px rgba(74, 222, 128, 0.2);
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        #loadingOverlay .scan-line::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(181, 250, 210, 0.72), transparent);
+            animation: scanFastTrail 0.95s linear infinite;
+        }
+
+        @keyframes scanFast {
+            0% {
+                transform: translate3d(0, -12vh, 0);
+                opacity: 0;
+            }
+            8% {
+                opacity: 1;
+            }
+            92% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate3d(0, 114vh, 0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes scanFastTrail {
+            0% { opacity: 0; }
+            12% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { opacity: 0; }
+        }
+
+        /* Floating particles */
+        #loadingOverlay .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #7aebb5;
+            border-radius: 50%;
+            animation: float linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(1);
+            }
+        }
+
+        /* Main content container */
+        #loadingOverlay .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+            width: min(700px, 92vw);
+            padding: 22px 22px 18px;
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            box-shadow: 0 22px 72px rgba(0, 0, 0, 0.42), inset 0 0 56px rgba(74, 222, 128, 0.06);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.34s ease, transform 0.34s ease, filter 0.34s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logo/Shield */
+        #loadingOverlay .shield-container {
+            position: relative;
+            width: 112px;
+            height: 112px;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        #loadingOverlay .loading-logo {
+            width: 112px;
+            height: 112px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 14px rgba(74, 222, 128, 0.4));
+        }
+
+        @keyframes drawShield {
+            from {
+                stroke-dasharray: 1000;
+                stroke-dashoffset: 1000;
+            }
+            to {
+                stroke-dasharray: 1000;
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.58));
+            }
+            50% {
+                transform: scale(1.035);
+                filter: drop-shadow(0 0 16px rgba(74, 222, 128, 0.65));
+            }
+        }
+
+        #loadingOverlay .shield-icon {
+            display: none;
+        }
+
+        @keyframes iconGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px #4ade80, 0 0 20px #4ade80;
+            }
+            50% {
+                text-shadow: 0 0 20px #4ade80, 0 0 30px #4ade80, 0 0 40px #4ade80;
+            }
+        }
+
+        /* Title */
+        #loadingOverlay .title {
+            font-size: clamp(1.75rem, 3.5vw, 2.05rem);
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 1px;
+            letter-spacing: 0.4px;
+            text-transform: none;
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.45);
+            animation: titleGlow 2s ease-in-out infinite;
+            max-width: 100%;
+            white-space: normal;
+            overflow-wrap: anywhere;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(74, 222, 128, 0.45);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(74, 222, 128, 0.7), 0 0 30px rgba(74, 222, 128, 0.5);
+            }
+        }
+
+        #loadingOverlay .subtitle {
+            font-size: clamp(0.82rem, 1.55vw, 0.92rem);
+            color: #bdeed1;
+            letter-spacing: 0.35px;
+            margin-bottom: 12px;
+            opacity: 0.95;
+            line-height: 1.4;
+            max-width: 80%;
+        }
+
+        /* Terminal-style loading text */
+        #loadingOverlay .terminal {
+            background: rgba(4, 10, 23, 0.72);
+            border: 1px solid rgba(74, 222, 128, 0.32);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin: 6px auto 4px;
+            max-width: 560px;
+            width: min(560px, 90%);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+            text-align: left;
+            transition: opacity 0.38s ease, transform 0.38s ease;
+        }
+
+        #loadingOverlay .terminal-line {
+            color: #93efb9;
+            font-size: clamp(0.9rem, 1.55vw, 0.98rem);
+            line-height: 1.45;
+            margin: 3px 0;
+            opacity: 0;
+            animation: terminalType 0.5s forwards;
+            letter-spacing: 0.15px;
+            white-space: normal;
+        }
+
+        #loadingOverlay .terminal-line:nth-child(1) { animation-delay: 0.5s; }
+        #loadingOverlay .terminal-line:nth-child(2) { animation-delay: 1s; }
+        #loadingOverlay .terminal-line:nth-child(3) { animation-delay: 1.5s; }
+        #loadingOverlay .terminal-line:nth-child(4) { animation-delay: 2s; }
+        #loadingOverlay .terminal-line:nth-child(5) { animation-delay: 2.5s; }
+
+        @keyframes terminalType {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        #loadingOverlay .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 14px;
+            background: #8ae7ae;
+            margin-left: 5px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Progress bar */
+        #loadingOverlay .progress-container {
+            width: min(560px, 90%);
+            height: 6px;
+            background: rgba(74, 222, 128, 0.12);
+            border-radius: 10px;
+            margin: 10px auto 6px;
+            overflow: hidden;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            position: relative;
+            transition: opacity 0.38s ease, transform 0.38s ease;
+        }
+
+        #loadingOverlay .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg,
+                #35d284 0%,
+                #7aebb5 50%,
+                #35d284 100%
+            );
+            border-radius: 10px;
+            animation: progress 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            box-shadow: 0 0 16px rgba(74, 222, 128, 0.55);
+            position: relative;
+        }
+
+        #loadingOverlay .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes progress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        #loadingOverlay .progress-text {
+            color: #5ddda1;
+            font-size: clamp(0.8rem, 1.35vw, 0.9rem);
+            margin-top: 3px;
+            letter-spacing: 0.55px;
+            transition: opacity 0.38s ease, transform 0.38s ease;
+        }
+
+        #loadingOverlay .kali-finale {
+            position: absolute;
+            inset: 0;
+            z-index: 30;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(6, 16, 24, 0.6), rgba(8, 24, 19, 0.7));
+            opacity: 0;
+            transform: scale(1.03);
+            filter: blur(4px);
+            pointer-events: none;
+            transition:
+                opacity 0.36s ease,
+                transform 0.48s cubic-bezier(0.2, 0.72, 0.18, 1),
+                filter 0.36s ease;
+        }
+
+        #loadingOverlay .kali-impact-ring {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 74px;
+            height: 74px;
+            border: 2px solid rgba(74, 222, 128, 0.52);
+            border-radius: 999px;
+            transform: translate(-50%, -50%) scale(0.4);
+            opacity: 0;
+        }
+
+        #loadingOverlay .kali-finale-logo-wrap {
+            position: relative;
+            width: min(1100px, 96vw);
+            margin: 0 auto 8px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #loadingOverlay .kali-finale-logo {
+            width: 100%;
+            max-width: 1040px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 14px rgba(74, 222, 128, 0.35));
+        }
+
+        #loadingOverlay .kali-finale-text {
+            color: #d8fbe8;
+            font-size: clamp(1rem, 1.8vw, 1.35rem);
+            letter-spacing: 1.3px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-shadow: 0 0 12px rgba(74, 222, 128, 0.3);
+        }
+
+        #loadingOverlay .kali-finale-subtext {
+            color: rgba(179, 236, 204, 0.84);
+            margin-top: 4px;
+            font-size: clamp(0.74rem, 1.05vw, 0.86rem);
+            letter-spacing: 0.5px;
+        }
+
+        #loadingOverlay .loading-container.kali-sequence .content {
+            opacity: 0;
+            transform: scale(0.95);
+            filter: blur(5px);
+        }
+
+        #loadingOverlay .loading-container.kali-sequence .terminal,
+        #loadingOverlay .loading-container.kali-sequence .progress-container,
+        #loadingOverlay .loading-container.kali-sequence .progress-text {
+            opacity: 0;
+            transform: translateY(-12px);
+        }
+
+        #loadingOverlay .grid-background,
+        #loadingOverlay .scan-line,
+        #loadingOverlay .hex-decoration,
+        #loadingOverlay .particle {
+            transition: opacity 0.36s ease;
+        }
+
+        #loadingOverlay .loading-container.kali-sequence .grid-background,
+        #loadingOverlay .loading-container.kali-sequence .scan-line,
+        #loadingOverlay .loading-container.kali-sequence .hex-decoration,
+        #loadingOverlay .loading-container.kali-sequence .particle {
+            opacity: 0.12;
+        }
+
+        #loadingOverlay .loading-container.kali-sequence .kali-finale {
+            opacity: 1;
+            transform: scale(1);
+            filter: none;
+        }
+
+        #loadingOverlay .loading-container.kali-sequence .kali-impact-ring {
+            animation: kaliImpactRing 0.64s cubic-bezier(0.15, 0.72, 0.16, 1) both;
+        }
+
+        #loadingOverlay .loading-container.kali-sequence .kali-finale-logo-wrap {
+            animation: kaliStrikeIn 0.78s cubic-bezier(0.14, 0.76, 0.18, 1) both;
+        }
+
+        #loadingOverlay .loading-container.kali-sequence .kali-finale-logo {
+            animation: kaliGlide 0.82s cubic-bezier(0.17, 0.78, 0.16, 1) both, kaliAura 2.1s ease-in-out 0.82s infinite;
+        }
+
+        @keyframes kaliStrikeIn {
+            0% {
+                transform: translateY(20px) scale(0.9);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-2px) scale(1.01);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes kaliImpactRing {
+            0% {
+                transform: translate(-50%, -50%) scale(0.35);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2.7);
+                opacity: 0;
+            }
+        }
+
+        @keyframes kaliGlide {
+            0% {
+                transform: translateY(54px) scale(0.86);
+                filter: blur(2px) drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+            }
+            55% {
+                transform: translateY(-2px) scale(1.02);
+                filter: blur(0) drop-shadow(0 0 18px rgba(74, 222, 128, 0.36));
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                filter: blur(0) drop-shadow(0 0 10px rgba(74, 222, 128, 0.28));
+            }
+        }
+
+        @keyframes kaliAura {
+            0%, 100% { filter: drop-shadow(0 0 9px rgba(74, 222, 128, 0.3)); }
+            50% { filter: drop-shadow(0 0 16px rgba(74, 222, 128, 0.38)); }
+        }
+
+        /* Light-mode finale needs a different aura palette (blue/green) and stronger contrast. */
+        @keyframes kaliGlideLight {
+            0% {
+                transform: translateY(54px) scale(0.86);
+                filter: blur(1.5px) saturate(1.1) contrast(1.05) drop-shadow(0 0 0 rgba(15, 23, 42, 0));
+            }
+            55% {
+                transform: translateY(-2px) scale(1.02);
+                filter: blur(0) saturate(1.14) contrast(1.08)
+                        drop-shadow(0 0 18px rgba(10, 107, 216, 0.22))
+                        drop-shadow(0 0 12px rgba(10, 143, 85, 0.14));
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                filter: blur(0) saturate(1.12) contrast(1.06)
+                        drop-shadow(0 0 10px rgba(10, 107, 216, 0.18))
+                        drop-shadow(0 0 8px rgba(10, 143, 85, 0.12));
+            }
+        }
+
+        @keyframes kaliAuraLight {
+            0%, 100% {
+                filter: saturate(1.12) contrast(1.06)
+                        drop-shadow(0 0 10px rgba(10, 107, 216, 0.18))
+                        drop-shadow(0 0 8px rgba(10, 143, 85, 0.12));
+            }
+            50% {
+                filter: saturate(1.16) contrast(1.08)
+                        drop-shadow(0 0 16px rgba(10, 107, 216, 0.22))
+                        drop-shadow(0 0 12px rgba(10, 143, 85, 0.16));
+            }
+        }
+
+        /* Hexagon decorations */
+        #loadingOverlay .hex-decoration {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0.06;
+            animation: rotate 20s linear infinite;
+        }
+
+        #loadingOverlay .hex-decoration:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-duration: 15s;
+        }
+
+        #loadingOverlay .hex-decoration:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-duration: 20s;
+            animation-direction: reverse;
+        }
+
+        #loadingOverlay .hex-decoration:nth-child(3) {
+            bottom: 15%;
+            left: 15%;
+            animation-duration: 25s;
+        }
+
+        #loadingOverlay .hex-decoration:nth-child(4) {
+            bottom: 10%;
+            right: 10%;
+            animation-duration: 18s;
+            animation-direction: reverse;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Loading complete fade out */
+        #loadingOverlay .loading-container.complete {
+            animation: fadeOut 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                transform: scale(1.015);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #loadingOverlay .content {
+                width: min(720px, 94vw);
+                padding: 18px 14px 14px;
+                gap: 6px;
+            }
+            #loadingOverlay .title { font-size: 1.45rem; }
+            #loadingOverlay .subtitle {
+                font-size: 0.74rem;
+                margin-bottom: 8px;
+                letter-spacing: 0.2px;
+                max-width: 88%;
+            }
+            #loadingOverlay .progress-container {
+                width: 90%;
+            }
+            #loadingOverlay .terminal {
+                width: 90%;
+                padding: 11px 12px;
+                margin-top: 4px;
+            }
+            #loadingOverlay .terminal-line {
+                font-size: 0.76rem;
+                line-height: 1.35;
+            }
+            #loadingOverlay .shield-container {
+                width: 84px;
+                height: 84px;
+                margin-bottom: 6px;
+            }
+            #loadingOverlay .loading-logo {
+                width: 84px;
+                height: 84px;
+            }
+            #loadingOverlay .kali-finale {
+                width: 100%;
+            }
+            #loadingOverlay .kali-finale-logo-wrap {
+                width: min(98vw, 700px);
+                padding: 0;
+            }
+            #loadingOverlay .kali-finale-text {
+                font-size: 1.02rem;
+                letter-spacing: 1.1px;
+            }
+            #loadingOverlay .kali-finale-subtext {
+                font-size: 0.76rem;
+                letter-spacing: 0.48px;
+            }
+            #loadingOverlay .terminal-line:nth-child(4) {
+                display: none;
+            }
+        }
+
+        /* =========================================================
+           LIGHT MODE OVERRIDES (PROFESSIONAL + LEGIBLE)
+           Note: loading.css is used standalone by preview pages too,
+           so these overrides intentionally avoid relying on CSS vars.
+           ========================================================= */
+        html[data-theme="light"] #loadingOverlay {
+            background: #f7fafc;
+            color: #0f172a;
+        }
+
+        html[data-theme="light"] #loadingOverlay .loading-container {
+            background:
+                radial-gradient(circle at 18% 16%, rgba(10, 107, 216, 0.14), transparent 44%),
+                radial-gradient(circle at 82% 84%, rgba(10, 143, 85, 0.14), transparent 46%),
+                linear-gradient(160deg, #f7fbff 0%, #eef5ff 52%, #f8fbff 100%);
+        }
+
+        html[data-theme="light"] #loadingOverlay .grid-background {
+            background-image:
+                linear-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+            opacity: 0.24;
+        }
+
+        html[data-theme="light"] #loadingOverlay .scan-line {
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(10, 107, 216, 0.65) 28%,
+                rgba(10, 143, 85, 0.75) 50%,
+                rgba(10, 107, 216, 0.65) 72%,
+                transparent
+            );
+            box-shadow: 0 0 10px rgba(10, 107, 216, 0.18), 0 0 22px rgba(10, 143, 85, 0.14);
+        }
+
+        html[data-theme="light"] #loadingOverlay .content {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(238, 242, 247, 0.92));
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            box-shadow: 0 18px 60px rgba(15, 23, 42, 0.12), inset 0 0 40px rgba(10, 107, 216, 0.06);
+            backdrop-filter: blur(10px);
+        }
+
+        html[data-theme="light"] #loadingOverlay .loading-logo {
+            filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.14));
+        }
+
+        html[data-theme="light"] #loadingOverlay .title {
+            color: #0b1220;
+            text-shadow: none;
+            animation: none;
+        }
+
+        html[data-theme="light"] #loadingOverlay .subtitle {
+            color: #334155;
+            text-shadow: none;
+            opacity: 0.98;
+        }
+
+        html[data-theme="light"] #loadingOverlay .terminal {
+            background: rgba(255, 255, 255, 0.90);
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            box-shadow: 0 14px 34px rgba(15, 23, 42, 0.10);
+        }
+
+        html[data-theme="light"] #loadingOverlay .terminal-line {
+            color: #0f172a;
+        }
+
+        html[data-theme="light"] #loadingOverlay .terminal-cursor {
+            background: #0a6bd8;
+        }
+
+        html[data-theme="light"] #loadingOverlay .progress-container {
+            background: rgba(10, 107, 216, 0.08);
+            border: 1px solid rgba(15, 23, 42, 0.12);
+        }
+
+        html[data-theme="light"] #loadingOverlay .progress-bar {
+            background: linear-gradient(90deg, #0a6bd8 0%, #0a8f55 50%, #0a6bd8 100%);
+            box-shadow: 0 10px 26px rgba(10, 107, 216, 0.18);
+        }
+
+        html[data-theme="light"] #loadingOverlay .progress-text {
+            color: #0f172a;
+        }
+
+        html[data-theme="light"] #loadingOverlay .kali-finale {
+            background: linear-gradient(180deg, rgba(247, 251, 255, 0.86), rgba(238, 242, 247, 0.92));
+        }
+
+        html[data-theme="light"] #loadingOverlay .kali-impact-ring {
+            border-color: rgba(10, 107, 216, 0.35);
+        }
+
+        html[data-theme="light"] #loadingOverlay .kali-finale-logo-wrap {
+            border-radius: 18px;
+            padding: 10px 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(238, 242, 247, 0.78));
+            border: 1px solid rgba(10, 107, 216, 0.16);
+            box-shadow: 0 18px 46px rgba(15, 23, 42, 0.12), inset 0 0 0 1px rgba(10, 143, 85, 0.08);
+        }
+
+        html[data-theme="light"] #loadingOverlay .kali-finale-logo {
+            /* Light mode uses a dedicated high-contrast SVG; keep the treatment vivid but professional. */
+            filter: saturate(1.12) contrast(1.06) drop-shadow(0 18px 28px rgba(10, 107, 216, 0.18)) drop-shadow(0 10px 18px rgba(10, 143, 85, 0.12)) !important;
+            mix-blend-mode: normal;
+        }
+
+        html[data-theme="light"] #loadingOverlay .loading-container.kali-sequence .kali-finale-logo {
+            animation: kaliGlideLight 0.82s cubic-bezier(0.17, 0.78, 0.16, 1) both, kaliAuraLight 2.1s ease-in-out 0.82s infinite;
+        }
+
+        html[data-theme="light"] #loadingOverlay .kali-finale-text {
+            color: #0b1220;
+            text-shadow: none;
+        }
+
+        html[data-theme="light"] #loadingOverlay .kali-finale-subtext {
+            color: rgba(51, 65, 85, 0.92);
+        }
+
+        html[data-theme="light"] #loadingOverlay .hex-decoration {
+            opacity: 0.10;
+        }

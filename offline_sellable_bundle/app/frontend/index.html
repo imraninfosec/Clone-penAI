@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Platform</title>
+
+<script>
+(function () {
+  try {
+    var key = 'dih_theme';
+    var saved = localStorage.getItem(key);
+    var theme = (saved === 'light' || saved === 'dark') ? saved : null;
+    if (!theme) {
+      theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch (e) {}
+})();
+</script>
+
+    <link rel="stylesheet" href="/static/styles.css?v=52">
+    <link rel="stylesheet" href="/static/loading.css?v=22">
+    <link rel="stylesheet" href="/static/vendor/fontawesome/css/all.min.css?v=2">
+</head>
+<body>
+    <div id="loadingOverlay" class="loading-overlay" style="display:none;">
+        <div class="loading-container">
+            <div class="grid-background"></div>
+            <div class="scan-line"></div>
+            <svg class="hex-decoration" viewBox="0 0 100 100">
+                <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="none" stroke="#7aebb5" stroke-width="1"/>
+            </svg>
+            <svg class="hex-decoration" viewBox="0 0 100 100">
+                <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="none" stroke="#7aebb5" stroke-width="1"/>
+            </svg>
+            <svg class="hex-decoration" viewBox="0 0 100 100">
+                <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="none" stroke="#7aebb5" stroke-width="1"/>
+            </svg>
+            <div class="content">
+                <div class="shield-container">
+                    <img src="/static/branding/brand_logo_dark.svg?v=1" alt="Brand logo placeholder" class="loading-logo" data-logo-dark="/static/branding/brand_logo_dark.svg?v=1" data-logo-light="/static/branding/brand_logo_light.svg?v=1">
+                </div>
+                <div class="title">Cybersecurity Platform</div>
+                <div class="subtitle">Automated Security Validation and Reporting</div>
+                <div class="terminal">
+                    <div class="terminal-line">Initializing security modules...</div>
+                    <div class="terminal-line">Validating scan engines...</div>
+                    <div class="terminal-line">Starting AI analysis services...</div>
+                    <div class="terminal-line">Preparing reporting workspace...</div>
+                    <div class="terminal-line">✓ System ready<span class="terminal-cursor"></span></div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="progress-text">SECURING CONNECTION...</div>
+            </div>
+            <div class="kali-finale" aria-hidden="true">
+                <div class="kali-impact-ring"></div>
+                <div class="kali-finale-logo-wrap">
+                    <img src="/static/branding/brand_mark_dark.svg?v=1" alt="Brand mark placeholder" class="kali-finale-logo" data-logo-dark="/static/branding/brand_mark_dark.svg?v=1" data-logo-light="/static/branding/brand_mark_light.svg?v=1">
+                </div>
+                <div class="kali-finale-text">BRAND SECURITY COMMAND</div>
+                <div class="kali-finale-subtext">AI-powered pentest intelligence for executive leadership</div>
+            </div>
+            <div class="particle" style="left: 5%; animation-duration: 3s; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 20%; animation-duration: 4s; animation-delay: 1s;"></div>
+            <div class="particle" style="left: 35%; animation-duration: 3.5s; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 50%; animation-duration: 4.5s; animation-delay: 0.5s;"></div>
+            <div class="particle" style="left: 65%; animation-duration: 3s; animation-delay: 1.5s;"></div>
+            <div class="particle" style="left: 80%; animation-duration: 4s; animation-delay: 2.5s;"></div>
+            <div class="particle" style="left: 95%; animation-duration: 3.5s; animation-delay: 3s;"></div>
+        </div>
+    </div>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-box">
+                <div class="login-header">
+                    <div class="shield-icon">
+                        <img src="/static/branding/brand_logo_dark.svg?v=1" alt="Brand logo placeholder" class="auth-logo" data-logo-dark="/static/branding/brand_logo_dark.svg?v=1" data-logo-light="/static/branding/brand_logo_light.svg?v=1">
+                    </div>
+                    <h1>Cybersecurity Platform</h1>
+                    <p class="company-name">Secure Access Console</p>
+                    <div class="security-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>256-bit Encrypted</span>
+                    </div>
+                </div>
+                
+                <form class="login-form" id="loginForm">
+                    <div id="loginError" class="login-error" style="display:none;"></div>
+                    <div class="form-group">
+                        <label for="username">
+                            <i class="fas fa-user"></i>
+                            Administrator Username
+                        </label>
+                        <input type="text" id="username" placeholder="Enter your username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-key"></i>
+                            Secure Password
+                        </label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                        <div class="password-strength">
+                            <div class="strength-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Remember this device</span>
+                        </label>
+                        <a href="#" id="forgotPasswordBtn" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        SECURE LOGIN
+                    </button>
+                </form>
+                
+                <div class="login-footer">
+                    <div class="security-info">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Secure Connection Established</span>
+                    </div>
+                    <div class="compliance-badges">
+                        <span class="badge">ISO 27001</span>
+                        <span class="badge">UAE IAS</span>
+                        <span class="badge">OWASP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="login-background">
+            <div class="grid-pattern"></div>
+            <div class="floating-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="mainDashboard" class="main-dashboard" style="display: none;">
+        <!-- Top Navigation Bar -->
+        <nav class="top-navbar">
+            <div class="navbar-left">
+                <div class="logo-section">
+                    <img src="/static/branding/brand_logo_dark.svg?v=1" alt="Brand logo placeholder" class="navbar-logo" data-logo-dark="/static/branding/brand_logo_dark.svg?v=1" data-logo-light="/static/branding/brand_logo_light.svg?v=1">
+                    <div class="logo-text">
+                        <h2>Cybersecurity Platform</h2>
+                        <span>Company Name Placeholder</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navbar-center">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input id="globalSearchInput" type="text" placeholder="Search by scan ID, tool, target, status...">
+                </div>
+            </div>
+            
+            <div class="navbar-right">
+                <div class="system-status">
+                    <div class="status-indicator">
+                        <span class="status-dot online"></span>
+                        <span class="status-text">All Systems Operational</span>
+                    </div>
+                </div>
+                
+                <div class="user-profile" id="userProfile">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%2300ff9f'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%230a0e27' font-family='Arial' font-size='16' font-weight='bold'%3EA%3C/text%3E%3C/svg%3E" alt="Admin">
+                    <div class="user-info">
+                        <span class="user-name">User</span>
+                        <span class="user-role" id="userRoleLabel">Role</span>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="user-menu" id="userMenu">
+                        <button class="user-menu-item admin-only" id="createUserBtn" style="display:none;">
+                            <i class="fas fa-users-cog"></i>
+                            User Management
+                        </button>
+                        <button class="user-menu-item" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">MAIN MENU</h3>
+                    <ul class="nav-menu">
+                        <li class="nav-item active" data-page="dashboard">
+                            <i class="fas fa-th-large"></i>
+                            <span>Dashboard</span>
+                            <div class="nav-indicator"></div>
+                        </li>
+                        <li class="nav-item" data-page="posture">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Posture &amp; Compliance</span>
+                        </li>
+                        <li class="nav-item" data-page="newScan">
+                            <i class="fas fa-crosshairs"></i>
+                            <span>New Scan</span>
+                        </li>
+                        <li class="nav-item" data-page="scanHistory">
+                            <i class="fas fa-history"></i>
+                            <span>Scan History</span>
+                            <span class="nav-badge">12</span>
+                        </li>
+                        <li class="nav-item" data-page="reports">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">SETTINGS</h3>
+                    <ul class="nav-menu">
+                        <li class="nav-item admin-only" data-page="onboarding" style="display:none;">
+                            <i class="fas fa-building-shield"></i>
+                            <span>Company Onboarding</span>
+                        </li>
+                        <li class="nav-item" data-page="logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="sidebar-tools-panel">
+                    <h4>Security Engines</h4>
+                    <div class="sidebar-tools-list" id="sidebarToolsStatus"></div>
+                </div>
+                <div class="system-info">
+                    <h4>System Health</h4>
+                    <div class="health-item">
+                        <span>CPU Usage</span>
+                        <div class="progress-bar">
+                            <div id="cpuUsageBar" class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span id="cpuUsageValue" class="health-value">0%</span>
+                    </div>
+                    <div class="health-item">
+                        <span>Memory</span>
+                        <div class="progress-bar">
+                            <div id="memoryUsageBar" class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span id="memoryUsageValue" class="health-value">0%</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <div id="dashboardPage" class="content-page active">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>Security Dashboard</h1>
+                        <p>Real-time security monitoring and threat analysis</p>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-secondary" id="exportDataBtn">
+                            <i class="fas fa-download"></i>
+                            Export Data
+                        </button>
+                        <button class="btn btn-primary" id="newScanShortcut">
+                            <i class="fas fa-plus"></i>
+                            New Scan
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card full-width news-ticker-card">
+                    <div class="card-header">
+                        <h3>
+                            <i class="fas fa-bullhorn"></i>
+                            Cyber Threat Pulse
+                        </h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="cyber-news-ticker">
+                            <span class="ticker-label">LIVE</span>
+                            <span class="ticker-source" id="cyberNewsSource">Source: Threat Intelligence</span>
+                            <span class="ticker-text" id="cyberNewsTypewriter">Loading cybersecurity attack headlines...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Scans & Vulnerabilities -->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card" id="aiAssistantCard">
+                        <div class="card-header">
+                            <h3>
+                                <img src="/static/dragon_ai_icon.svg?v=9" alt="" class="dragon-ui-icon card-dragon-icon chatbot-brand-logo" data-logo-dark="/static/dragon_ai_icon.svg?v=9" data-logo-light="/static/dragon_ai_icon_light.svg?v=2">
+                                AI Chatbot Assistance
+                            </h3>
+                            <div class="card-actions">
+                                <button class="btn btn-secondary" id="exportChatBtn">
+                                    <i class="fas fa-download"></i>
+                                    Export Chat
+                                </button>
+                                <button class="btn btn-secondary" id="clearChatBtn">
+                                    <i class="fas fa-trash"></i>
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="ai-panel">
+                                <!-- Prompt chips removed -->
+                                <div class="chat-main">
+                                    <div class="chat-messages" id="chatMessages">
+                                        <div class="chat-welcome">
+                                            <div class="welcome-icon">
+                                                <img src="/static/dragon_ai_logo.svg?v=9" alt="AI assistant dragon logo" class="chatbot-welcome-logo chatbot-brand-logo" data-logo-dark="/static/dragon_ai_logo.svg?v=9" data-logo-light="/static/dragon_ai_logo_light.svg?v=2">
+                                            </div>
+                                            <h2>AI Chatbot Assistance</h2>
+                                            <p>Professional automated pentesting support for scans, live status, and executive or technical reporting.</p>
+                                        </div>
+                                    </div>
+                                    <div class="chat-input-container">
+                                        <div class="chat-input-wrapper">
+                                            <textarea 
+                                                class="chat-input" 
+                                                placeholder="Ask me to scan a target, check status, or generate a report..."
+                                                rows="1"
+                                            ></textarea>
+                                            <button class="send-btn" aria-label="Send message">
+                                                <i class="fas fa-paper-plane send-pentest-icon" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <div class="input-footer">
+                                            <div class="ai-status">
+                                                <span class="status-dot online"></span>
+                                                <span id="aiModelStatusText">AI Analysis Engine: Checking status...</span>
+                                            </div>
+                                            <div class="input-hint">
+                                                Press <kbd>Enter</kbd> to send, <kbd>Shift + Enter</kbd> for new line
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card" id="recentScansCard">
+                        <div class="card-header">
+                            <h3>
+                                <i class="fas fa-history"></i>
+                                Recent Scans
+                            </h3>
+                            <a href="#" class="view-all" id="viewAllScansLink">View All</a>
+                        </div>
+                        <div class="card-content">
+                            <div class="scan-list" id="recentScanList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Posture & Compliance Page -->
+            <div id="posturePage" class="content-page">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>
+                            <i class="fas fa-shield-alt"></i>
+                            Posture &amp; Compliance
+                        </h1>
+                        <p>Heat map summary, framework alignment, and per-target compliance reporting</p>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-secondary" id="postureRefreshBtn">
+                            <i class="fas fa-rotate"></i>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <div id="postureKpis" class="stats-grid"></div>
+
+                <div class="posture-grid">
+                    <div class="dashboard-card posture-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-table-cells-large"></i> Heat Map Summary</h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="postureHeatmap" class="posture-heatmap"></div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card posture-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-triangle-exclamation"></i> Top Risk Targets</h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="postureTopTargets" class="posture-top-targets"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card full-width posture-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-scale-balanced"></i> Framework Alignment</h3>
+                    </div>
+                    <div class="card-content">
+                        <div id="postureFrameworks" class="posture-frameworks"></div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card full-width posture-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-file-lines"></i> Compliance Summary Report</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="posture-report-bar">
+                            <label class="report-select-label">
+                                Target
+                                <select id="postureTargetSelect" class="report-select">
+                                    <option value="">Select a target…</option>
+                                </select>
+                            </label>
+                            <button class="btn btn-primary" id="postureOpenComplianceBtn">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                                Open Compliance Report
+                            </button>
+                            <button class="btn btn-secondary" id="postureOpenConsolidatedBtn">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                                Open Consolidated Report
+                            </button>
+                        </div>
+                        <div class="posture-report-hint">
+                            Separate report: maps findings to ISO 27001, SOC 2, NIST, OWASP, CIS, and UAE IAS themes with remediation appendix.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card full-width posture-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-layer-group"></i> Target Posture Cards</h3>
+                    </div>
+                    <div class="card-content">
+                        <div id="postureTargetCards" class="posture-target-cards"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Scan Page -->
+            <div id="newScanPage" class="content-page">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>
+                            <i class="fas fa-crosshairs"></i>
+                            New Security Scan
+                        </h1>
+                        <p>Launch a scan with katana, nikto, nuclei, or sqlmap</p>
+                    </div>
+                </div>
+                <div class="scan-form-card">
+                    <form id="newScanForm" class="scan-form">
+                        <div class="scan-form-grid">
+                            <div class="scan-form-group">
+                                <label for="scanTarget">Target</label>
+                                <input id="scanTarget" type="text" placeholder="example.com or https://app.example.com" required>
+                                <small>Use a domain or full URL. For production targets, include https://</small>
+                            </div>
+                            <div class="scan-form-group">
+                                <label for="scanTool">Tool</label>
+                                <select id="scanTool">
+                                    <option value="katana">Katana</option>
+                                    <option value="nikto">Nikto</option>
+                                    <option value="nuclei">Nuclei</option>
+                                    <option value="sqlmap">SQLMap</option>
+                                    <option value="all">All Tools</option>
+                                </select>
+                                <small>All Tools runs sequentially and enables consolidated reporting.</small>
+                            </div>
+                        </div>
+                        <div class="scan-form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Start Scan
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="scanFormReset">
+                                <i class="fas fa-eraser"></i>
+                                Clear
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Reports Page -->
+            <div id="reportsPage" class="content-page">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>
+                            <i class="fas fa-file-alt"></i>
+                            Security Reports
+                        </h1>
+                        <p>Executive and technical penetration test reports</p>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-filter"></i>
+                            Filter
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-file-pdf"></i>
+                            Generate New Report
+                        </button>
+                    </div>
+                </div>
+
+                <div class="reports-grid" id="reportsGrid"></div>
+            </div>
+
+            <!-- Company Onboarding Page (Admin only) -->
+            <div id="onboardingPage" class="content-page">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>
+                            <i class="fas fa-building-shield"></i>
+                            Company Onboarding
+                        </h1>
+                        <p>Configure onboarding placeholders for customer branding, domains, and primary security contact</p>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-secondary" id="onboardingReloadBtn">
+                            <i class="fas fa-rotate"></i>
+                            Reload
+                        </button>
+                    </div>
+                </div>
+
+                <div class="onboarding-grid">
+                    <div class="scan-form-card">
+                        <form id="companyOnboardingForm" class="scan-form">
+                            <div id="onboardingError" class="login-error" style="display:none;"></div>
+                            <div id="onboardingSuccess" class="login-success" style="display:none;"></div>
+
+                            <div class="scan-form-grid">
+                                <div class="scan-form-group">
+                                    <label for="onboardingCompanyLegalName">Company Legal Name</label>
+                                    <input id="onboardingCompanyLegalName" type="text" placeholder="Company Legal Name Placeholder" required>
+                                </div>
+                                <div class="scan-form-group">
+                                    <label for="onboardingBrandDisplayName">Brand Display Name</label>
+                                    <input id="onboardingBrandDisplayName" type="text" placeholder="Company Brand Placeholder" required>
+                                </div>
+                                <div class="scan-form-group">
+                                    <label for="onboardingPlatformTitle">Platform Title</label>
+                                    <input id="onboardingPlatformTitle" type="text" placeholder="Security Platform Placeholder">
+                                </div>
+                                <div class="scan-form-group">
+                                    <label for="onboardingIndustrySector">Industry / Sector</label>
+                                    <input id="onboardingIndustrySector" type="text" placeholder="Industry Placeholder">
+                                </div>
+                                <div class="scan-form-group">
+                                    <label for="onboardingPrimaryDomain">Primary Domain</label>
+                                    <input id="onboardingPrimaryDomain" type="text" placeholder="example.com">
+                                </div>
+                                <div class="scan-form-group">
+                                    <label for="onboardingComplianceScope">Compliance Scope</label>
+                                    <input id="onboardingComplianceScope" type="text" placeholder="ISO 27001, SOC 2, NIST, OWASP">
+                                </div>
+                            </div>
+
+                            <div class="scan-form-group">
+                                <label for="onboardingAdditionalDomains">Additional In-Scope Domains (one per line)</label>
+                                <textarea id="onboardingAdditionalDomains" rows="4" placeholder="api.example.com&#10;portal.example.com"></textarea>
+                            </div>
+
+                            <div class="scan-form-grid">
+                                <div class="scan-form-group">
+                                    <label for="onboardingContactName">Primary Security Contact</label>
+                                    <input id="onboardingContactName" type="text" placeholder="Primary Security Contact Placeholder">
+                                </div>
+                                <div class="scan-form-group">
+                                    <label for="onboardingContactEmail">Contact Email</label>
+                                    <input id="onboardingContactEmail" type="email" placeholder="security@example.com">
+                                </div>
+                                <div class="scan-form-group">
+                                    <label for="onboardingContactPhone">Contact Phone</label>
+                                    <input id="onboardingContactPhone" type="text" placeholder="+971-00-000-0000">
+                                </div>
+                            </div>
+
+                            <div class="scan-form-grid">
+                                <div class="scan-form-group">
+                                    <label for="onboardingLogoDarkUrl">Logo URL (Dark Theme)</label>
+                                    <input id="onboardingLogoDarkUrl" type="text" placeholder="/static/branding/brand_logo_dark.svg?v=1">
+                                </div>
+                                <div class="scan-form-group">
+                                    <label for="onboardingLogoLightUrl">Logo URL (Light Theme)</label>
+                                    <input id="onboardingLogoLightUrl" type="text" placeholder="/static/branding/brand_logo_light.svg?v=1">
+                                </div>
+                                <div class="scan-form-group">
+                                    <label for="onboardingMarkDarkUrl">Mark URL (Dark Theme)</label>
+                                    <input id="onboardingMarkDarkUrl" type="text" placeholder="/static/dragon_ai_logo.svg?v=9">
+                                </div>
+                                <div class="scan-form-group">
+                                    <label for="onboardingMarkLightUrl">Mark URL (Light Theme)</label>
+                                    <input id="onboardingMarkLightUrl" type="text" placeholder="/static/dragon_ai_logo_light.svg?v=2">
+                                </div>
+                                <div class="scan-form-group">
+                                    <label for="onboardingAvatarUrl">Assistant Avatar URL</label>
+                                    <input id="onboardingAvatarUrl" type="text" placeholder="/static/dragon_ai_icon.svg?v=9">
+                                </div>
+                            </div>
+
+                            <div class="scan-form-group">
+                                <label for="onboardingNotes">Onboarding Notes</label>
+                                <textarea id="onboardingNotes" rows="4" placeholder="Add customer branding assets and approved target domains before go-live."></textarea>
+                            </div>
+
+                            <div class="scan-form-actions">
+                                <button type="submit" class="btn btn-primary" id="onboardingSaveBtn">
+                                    <i class="fas fa-save"></i>
+                                    Save Onboarding Profile
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="onboardingResetBtn">
+                                    <i class="fas fa-eraser"></i>
+                                    Reset Unsaved Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="dashboard-card onboarding-preview-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-eye"></i> Placeholder Preview</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="onboarding-preview-list">
+                                <div class="onboarding-preview-row">
+                                    <span class="onboarding-preview-label">Company</span>
+                                    <span class="onboarding-preview-value" id="onboardingPreviewCompany">-</span>
+                                </div>
+                                <div class="onboarding-preview-row">
+                                    <span class="onboarding-preview-label">Brand</span>
+                                    <span class="onboarding-preview-value" id="onboardingPreviewBrand">-</span>
+                                </div>
+                                <div class="onboarding-preview-row">
+                                    <span class="onboarding-preview-label">Platform</span>
+                                    <span class="onboarding-preview-value" id="onboardingPreviewPlatform">-</span>
+                                </div>
+                                <div class="onboarding-preview-row">
+                                    <span class="onboarding-preview-label">Primary Domain</span>
+                                    <span class="onboarding-preview-value" id="onboardingPreviewDomain">-</span>
+                                </div>
+                                <div class="onboarding-preview-row">
+                                    <span class="onboarding-preview-label">Contact</span>
+                                    <span class="onboarding-preview-value" id="onboardingPreviewContact">-</span>
+                                </div>
+                                <div class="onboarding-preview-row">
+                                    <span class="onboarding-preview-label">Compliance</span>
+                                    <span class="onboarding-preview-value" id="onboardingPreviewCompliance">-</span>
+                                </div>
+                            </div>
+                            <div class="onboarding-preview-meta" id="onboardingPreviewMeta">
+                                Last updated: -
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scan History Page -->
+            <div id="scanHistoryPage" class="content-page">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>
+                            <i class="fas fa-history"></i>
+                            Scan History
+                        </h1>
+                        <p>Complete history of all security scans</p>
+                    </div>
+                    <div class="page-actions">
+                        <input type="date" class="date-filter" id="scanDateFilter">
+                        <select class="filter-select" id="scanStatusFilter">
+                            <option value="all">All Status</option>
+                            <option value="completed">Completed</option>
+                            <option value="running">Running</option>
+                            <option value="failed">Failed</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                        <button class="btn btn-secondary" id="exportCsvBtn">
+                            <i class="fas fa-download"></i>
+                            Export CSV
+                        </button>
+                    </div>
+                </div>
+
+                <div class="history-table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Target</th>
+                                <th>Tool</th>
+                                <th>Status</th>
+                                <th>Date & Time</th>
+                                <th>Duration</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scanHistoryBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="passwordModal" class="modal auth-modal" style="display:none;">
+        <div class="modal-content auth-modal-content">
+            <div class="modal-header">
+                <h3 id="passwordModalTitle">Change Password</h3>
+                <button class="close-btn" id="closePasswordModal">&times;</button>
+            </div>
+            <div class="auth-modal-body">
+                <p class="auth-modal-subtitle" id="passwordModalSubtitle">Update your security console password securely.</p>
+                <form id="changePasswordForm" class="change-password-form">
+                    <div id="changePasswordError" class="login-error" style="display:none;"></div>
+                    <div id="changePasswordSuccess" class="login-success" style="display:none;"></div>
+                    <div class="form-group">
+                        <label for="cpUsername"><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="cpUsername" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpCurrentPassword"><i class="fas fa-key"></i> Current Password</label>
+                        <input type="password" id="cpCurrentPassword" placeholder="Enter current password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpNewPassword"><i class="fas fa-lock"></i> New Password</label>
+                        <input type="password" id="cpNewPassword" placeholder="Min 10 chars, upper/lower/number/special" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpConfirmPassword"><i class="fas fa-check-circle"></i> Confirm New Password</label>
+                        <input type="password" id="cpConfirmPassword" placeholder="Re-enter new password" required>
+                    </div>
+                    <div class="auth-modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelPasswordModal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="changePasswordSubmitBtn">
+                            <i class="fas fa-save"></i>
+                            Update Password
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Password Modal -->
+    <div id="actionPasswordModal" class="modal auth-modal" style="display:none;">
+        <div class="modal-content auth-modal-content">
+            <div class="modal-header">
+                <h3>Password Verification Required</h3>
+                <button class="close-btn" id="closeActionPasswordModal">&times;</button>
+            </div>
+            <div class="auth-modal-body">
+                <p class="auth-modal-subtitle" id="actionPasswordSubtitle">Re-enter your password to continue.</p>
+                <div id="actionPasswordError" class="login-error" style="display:none;"></div>
+                <div class="form-group">
+                    <label for="actionPasswordInput"><i class="fas fa-key"></i> Password</label>
+                    <input type="password" id="actionPasswordInput" placeholder="Enter your password" required>
+                </div>
+                <div class="auth-modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelActionPasswordBtn">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmActionPasswordBtn">
+                        <i class="fas fa-lock"></i>
+                        Verify
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Management Modal -->
+    <div id="createUserModal" class="modal auth-modal" style="display:none;">
+        <div class="modal-content auth-modal-content user-management-modal-content">
+            <div class="modal-header">
+                <h3>User Management</h3>
+                <button class="close-btn" id="closeCreateUserModal">&times;</button>
+            </div>
+            <div class="auth-modal-body">
+                <p class="auth-modal-subtitle">Create users, delete users, and export audit reports from one admin console.</p>
+                <div class="user-management-grid">
+                    <section class="user-management-card">
+                        <h4><i class="fas fa-user-plus"></i> Create User</h4>
+                        <form id="createUserForm" class="change-password-form">
+                            <div id="createUserError" class="login-error" style="display:none;"></div>
+                            <div id="createUserSuccess" class="login-success" style="display:none;"></div>
+                            <div class="form-group">
+                                <label for="newUsername"><i class="fas fa-user"></i> Username</label>
+                                <input type="text" id="newUsername" placeholder="e.g. analyst01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newUserRole"><i class="fas fa-user-tag"></i> Role</label>
+                                <select id="newUserRole">
+                                    <option value="user">User</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="newUserTempPassword"><i class="fas fa-key"></i> Temporary Password</label>
+                                <input type="password" id="newUserTempPassword" placeholder="Leave blank to use ChangeMe@123">
+                            </div>
+                            <div class="auth-modal-footer">
+                                <button type="submit" class="btn btn-primary" id="createUserSubmitBtn">
+                                    <i class="fas fa-user-plus"></i>
+                                    Create User
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <section class="user-management-card">
+                        <h4><i class="fas fa-user-minus"></i> Delete User</h4>
+                        <form id="deleteUserForm" class="change-password-form">
+                            <div id="deleteUserError" class="login-error" style="display:none;"></div>
+                            <div id="deleteUserSuccess" class="login-success" style="display:none;"></div>
+                            <div class="form-group">
+                                <label for="deleteUserSelect"><i class="fas fa-users"></i> Select User</label>
+                                <select id="deleteUserSelect" required>
+                                    <option value="">Select user to delete</option>
+                                </select>
+                            </div>
+                            <p class="user-management-note">Protected account rules apply. You cannot delete your current login session.</p>
+                            <div class="auth-modal-footer">
+                                <button type="submit" class="btn btn-danger" id="deleteUserSubmitBtn">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Delete User
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <section class="user-management-card user-management-card-wide">
+                        <div class="user-management-card-head">
+                            <h4><i class="fas fa-shield-alt"></i> Audit Reports</h4>
+                            <button type="button" class="btn btn-secondary" id="downloadAuditBtn">
+                                <i class="fas fa-download"></i>
+                                Download Audit Report
+                            </button>
+                        </div>
+                        <p class="auth-modal-subtitle">Current users and security roles are listed below for governance tracking.</p>
+                        <div class="history-table-container user-management-table">
+                            <table class="history-table">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                        <th>Last Login</th>
+                                        <th>Created</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="userManagementListBody">
+                                    <tr><td colspan="5" class="history-empty">User directory will load when opened.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="auth-modal-footer">
+                            <button type="button" class="btn btn-secondary" id="closeUserManagementBtn">
+                                <i class="fas fa-times"></i>
+                                Close
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logs Modal -->
+    <div id="logModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Scan Logs</h3>
+                <button class="close-btn" id="closeLogModal">&times;</button>
+            </div>
+            <pre id="logContent" class="modal-body"></pre>
+        </div>
+    </div>
+
+       <script src="/static/dashboard.js?v=108"></script>
+
+<button id="themeToggleBtn" class="theme-toggle-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle theme">
+  <i id="themeToggleIcon" class="fas fa-sun"></i>
+</button>
+
+<script>
+(function () {
+  var THEME_KEY = 'dih_theme';
+
+  function getSavedTheme() {
+    try {
+      var v = localStorage.getItem(THEME_KEY);
+      return (v === 'light' || v === 'dark') ? v : null;
+    } catch (e) { return null; }
+  }
+
+  function setSavedTheme(theme) {
+    try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
+  }
+
+  function setColorScheme(theme) {
+    try { document.documentElement.style.colorScheme = theme; } catch (e) {}
+  }
+
+  function applyTheme(theme, persist) {
+    if (theme !== 'light' && theme !== 'dark') theme = 'dark';
+
+    // Apply to root (system-wide CSS)
+    document.documentElement.setAttribute('data-theme', theme);
+    setColorScheme(theme);
+
+    // Update toggle icon
+    var icon = document.getElementById('themeToggleIcon');
+    if (icon) icon.className = (theme === 'light') ? 'fas fa-sun' : 'fas fa-moon';
+
+    // Swap any logos that use data-logo-dark/light
+    var imgs = document.querySelectorAll('img[data-logo-dark][data-logo-light]');
+    imgs.forEach(function (img) {
+      var src = (theme === 'light') ? img.getAttribute('data-logo-light') : img.getAttribute('data-logo-dark');
+      if (src) img.setAttribute('src', src);
+    });
+
+    if (persist) setSavedTheme(theme);
+  }
+
+  function initThemeToggle() {
+    // Respect theme already set in <head> (prevents flash)
+    var current = document.documentElement.getAttribute('data-theme');
+    if (current !== 'light' && current !== 'dark') {
+      current = getSavedTheme() || 'dark';
+      document.documentElement.setAttribute('data-theme', current);
+    }
+
+    // Ensure icon matches current
+    applyTheme(current, false);
+
+    var btn = document.getElementById('themeToggleBtn');
+    if (!btn) return;
+
+    // Avoid duplicate bindings (if dashboard.js also tries)
+    if (btn.dataset.bound === '1') return;
+    btn.dataset.bound = '1';
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      var now = document.documentElement.getAttribute('data-theme') || 'dark';
+      var next = (now === 'light') ? 'dark' : 'light';
+      applyTheme(next, true);
+    }, true);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
+})();
+</script>
+
+</body>
+</html>

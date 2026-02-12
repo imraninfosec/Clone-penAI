@@ -1,0 +1,25 @@
+# Offline bundle build outputs
+app/dist/
+
+# Customer-added heavy runtime assets (do not commit)
+app/tools/nuclei
+app/tools/katana
+app/tools/llama-server
+app/tools/nuclei-templates/
+app/tools/sqlmap/
+app/tools/nikto/
+app/models/*.gguf
+
+# Runtime artifacts
+app/backend/server.log
+app/backend/llama_server.log
+app/backend/*.log
+app/backend/*.db
+app/backend/__pycache__/
+app/scripts/__pycache__/
+app/**/*.pyc
+app/logs/
+app/reports/
+app/data/pentest.db
+app/data/bootstrap_admin_credentials.txt
+app/data/*.db-journal

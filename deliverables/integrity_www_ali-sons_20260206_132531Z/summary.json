@@ -1,0 +1,72 @@
+{
+  "target": "https://www.ali-sons.com",
+  "scan_ids": [
+    264,
+    265,
+    266,
+    267
+  ],
+  "scans": {
+    "264": {
+      "tool": "katana",
+      "status": "completed",
+      "started_at": "2026-02-06 11:00:06",
+      "completed_at": "2026-02-06 11:03:39",
+      "command": "/opt/ai-pentest/tools/katana -u https://www.ali-sons.com -jc -timeout 180",
+      "error": "",
+      "warning": null,
+      "artifacts": {
+        "record": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/scans/scan_264_record.json",
+        "logs": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/scans/scan_264_logs.json",
+        "raw_summary": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/scans/scan_264_raw_summary.txt"
+      }
+    },
+    "265": {
+      "tool": "nikto",
+      "status": "completed",
+      "started_at": "2026-02-06 11:03:47",
+      "completed_at": "2026-02-06 11:08:02",
+      "command": "/usr/bin/perl /opt/ai-pentest/tools/nikto/program/nikto.pl -h https://www.ali-sons.com -Tuning 1234567890abcde -timeout 180 -maxtime 15m -ssl",
+      "error": "+ ERROR: Error limit (20) reached for host, giving up. Last error: opening stream: ssl connect failed",
+      "warning": null,
+      "artifacts": {
+        "record": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/scans/scan_265_record.json",
+        "logs": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/scans/scan_265_logs.json",
+        "raw_summary": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/scans/scan_265_raw_summary.txt"
+      }
+    },
+    "266": {
+      "tool": "nuclei",
+      "status": "completed",
+      "started_at": "2026-02-06 11:08:10",
+      "completed_at": "2026-02-06 11:08:32",
+      "command": "/opt/ai-pentest/tools/nuclei -u https://www.ali-sons.com -silent -timeout 20 -severity critical,high,medium -rate-limit 25 -c 8 -tags light,quick,probing,http,misconfiguration -etags dns,headless,tcp,ssl,ssl-enum,smb,ftp,ssh,rdp,heavy -duc -stats -stats-interval 2 -t /opt/ai-pentest/tools/nuclei-templates -pt http",
+      "error": "",
+      "warning": null,
+      "artifacts": {
+        "record": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/scans/scan_266_record.json",
+        "logs": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/scans/scan_266_logs.json",
+        "raw_summary": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/scans/scan_266_raw_summary.txt"
+      }
+    },
+    "267": {
+      "tool": "sqlmap",
+      "status": "failed",
+      "started_at": "2026-02-06 11:08:32",
+      "completed_at": "2026-02-06 11:23:33",
+      "command": "/usr/bin/python3 /opt/ai-pentest/tools/sqlmap/sqlmap.py -u https://www.ali-sons.com --batch --level=2 --risk=1 --timeout=30 --retries=2 --fresh-queries --random-agent --threads=4 --answers=sitemap=Y --crawl=2 --forms",
+      "error": "SQLMap received HTTP 403 Forbidden from the target (access denied). Scan timed out after 900 seconds",
+      "warning": null,
+      "artifacts": {
+        "record": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/scans/scan_267_record.json",
+        "logs": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/scans/scan_267_logs.json",
+        "raw_summary": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/scans/scan_267_raw_summary.txt"
+      }
+    }
+  },
+  "reports": {
+    "combined_html": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/reports/report_target_ali-sons.com_combined.html",
+    "executive_html": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/reports/report_target_ali-sons.com_executive.html",
+    "technical_html": "/opt/ai-pentest/deliverables/integrity_www_ali-sons_20260206_132531Z/reports/report_target_ali-sons.com_technical.html"
+  }
+}

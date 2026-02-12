@@ -1,0 +1,137 @@
+Raw Scan Report (AI Summary)
+Scan ID: 260
+Target: https://www.ali-sons.com
+Tool: katana
+Status: completed
+Created: 2026-02-06 01:24 PM
+Completed: 2026-02-06 01:28 PM
+
+AI Summary:
+- [INFO] Endpoint Discovery - 118 Endpoints Discovered :: https://www.ali-sons.com/ar-news/njz-shhd-leed-gold-w-estidama-3-pearls-lmbn-mrkz-lbtkr-m10b https://www.ali-sons.com/ar-news/shrk-asc-tkrwm-mshryaa-lrbaa-l-wl-
+
+Findings Summary:
+- [INFO] Endpoint Discovery - 118 Endpoints Discovered :: https://www.ali-sons.com/ar-news/njz-shhd-leed-gold-w-estidama-3-pearls-lmbn-mrkz-lbtkr-m10b https://www.ali-sons.com/ar-news/shrk-asc-tkrwm-mshryaa-lrbaa-l-wl-
+
+Errors:
+None
+
+Raw Output:
+news/tlq-mns-edpx---msh-laaml-lrqmy-ldhky-lmdaawm-b-ashgpt
+https://www.ali-sons.com/ar-news/njz-shhd-leed-gold-w-estidama-3-pearls-lmbn-mrkz-lbtkr-m10b
+https://www.ali-sons.com/ar-news/shrk-asc-tkrwm-mshryaa-lrbaa-l-wl-bjy-z-ltmywz-fy-lsh-wlslm-lmhny
+https://www.ali-sons.com/ar-news/jwy-z-mrmwq-l-inter-emirates-motors-mn-shrk-saic-mwtwrz
+https://www.ali-sons.com/ar-news/njht-mshryaa-asc-fy-thqyq-5-mlyyn-saa-aaml-bdwn-hwdth-mdyaa-llwqt-lti
+https://www.ali-sons.com/ar-news/ntr-mrt-mwtwrz-ttlq-sl-laard-lry-ysy-ljdyd-laalm-mg-fy-bwzby
+https://www.ali-sons.com/ar-news/taazyz-lshrkt-qydt-porsche-ag-yzwrwn-mrkz-bwrshh-aaly-w-wldh
+https://www.ali-sons.com/ar-news/shrk-asc-thqwq-shhdty-leed-platinum-westidama-4-pearls-lmbn-lmktb-m13b
+https://www.ali-sons.com/ar-news/tkrym-mwzfy-shrk-asc-l-dy-hm-lmtmyz-fy-lsh-wlslm-lmhny-fy-mshrwaa-dmcc
+https://www.ali-sons.com/ar-news/xpeng-lmrt-w-dnwk-lltwzyaa-ytaawnn-ltaazyz-ltnql-ldhky-blmrkbt-lkhrby-y-byn-lmwz
+https://www.ali-sons.com/ar-news/lhtfl-bnjz-mhm-lftth-lrsmy-lsl-aard-skwd-fy-bwzby
+https://www.ali-sons.com/ar-news/tkrym-mwzfy-asc-l-dy-hm-lmtmyz-fy-lsh-wlslm-lmhny-bmshrwaa-dmcc
+https://www.ali-sons.com/ar-news/njh-aamly-thmyl-ldfaa-l-wl-mn-lwhdt-lmshrwaa-lhyl-wgsh
+https://www.ali-sons.com/ar-news/tkrym-aaly-w-wldh-lldykwr-ldkhly-mn-qbl-nic-lnjz-3-mlyyn-saa-aaml-dwn-hwdth
+https://www.ali-sons.com/ar-news/shrk-aaly-w-wldh-llmqwlt-thz-btkrym-mn-shrk-emsteel-fy-faaly-laaml-lsnwy
+https://www.ali-sons.com/ar-news/taazyz-lnmw-ntr-mrt-mwtwrz-tftth-sl-aard-mg-ljdyd-wlry-ysy-fy-lshrq
+https://www.ali-sons.com/ar-news/njz-stthny-y-fy-lslm---shrk-asc-thqwq-kthr-mn-90-fy-tdqyq-adosh-sf
+https://www.ali-sons.com/ar-news/mg
+https://www.ali-sons.com/ar-news/nzm-jdyd-ltsjyl-lzwr-fy-lmqr-lry-ysy-lmjmwaa-aaly-w-wldh
+https://www.ali-sons.com/ar-news/xpeng-taazz-hdwrh-fy-lshrq-l-wst-bftth-mstwdaa-qtaa-gyr-qlymy-jdyd-fy-jbl-aal
+https://www.ali-sons.com/ar-news/htfl-bfwz-jdyd-mmyz-lfryq-khdm-wdy
+https://www.ali-sons.com/ar-news/fll-dn-by-lskny-lfll-lbrwy----njz-brz-fy-ltmywz-blslm
+https://www.ali-sons.com/ar-news/ltlq-l-wl-lsyr-mg8-phev-fy-dwl-lmrt
+https://www.ali-sons.com/ar-news/aard-bwrshh-laalmy-lltrq-ykhtf-l-nzr-fy-bwzby-btjrbtyn-tmzjn-ldq-wlshgf
+https://www.ali-sons.com/ar/projects
+https://www.ali-sons.com/ar-news/mrkz-bwrshh-bwzby-ystaard-maardan-mstdman-wqblan-laad-lstkhdm-fy-faaly-icons-of-porsche-2025
+https://www.ali-sons.com/ar-news/mjwhrt-mwj-tdaawkm-lhdwr-maard-lmjwhrt-wlsaat-fy-nskhth-l32
+https://www.ali-sons.com/ar/csr
+https://www.ali-sons.com/ar-news/tjrb-ltbq-l-wl----lftth-lrsmy-lan
+https://www.ali-sons.com/ar-people/khalid-chami
+https://www.ali-sons.com/ar-people/joseph-kourieh
+https://www.ali-sons.com/ar-people/emad-elatreby
+https://www.ali-sons.com/ar-news/xpeng-trtqy-blbtkr-l-afq-jdyd-maa-aard-xpeng-aridge-fy-lmrt
+https://www.ali-sons.com/ar-people/saeed-bin-al-dhaheri
+https://www.ali-sons.com/ar-people/fatima-bint-ali-al-dhaheri
+https://www.ali-sons.com/ar-people/michael-bester
+https://www.ali-sons.com/ar-news/shrk-aaly-w-wldh-ltsnyaa-maadt-lhqwl-lnfty-thsl-aal-aatmd-api-q1-wapi-5b
+https://www.ali-sons.com/ar-people/shamis-bin-ali-al-dhaheri
+https://www.ali-sons.com/ar-people/h-e-ali-bin-khalfan-al-mutawa-al-dhaheri
+https://www.ali-sons.com/ar/automotive
+https://www.ali-sons.com/en/real-estate-retail-investment
+https://www.ali-sons.com/ar-people/ahmed-bin-ali-al-dhaheri
+https://www.ali-sons.com/ar-people/shumon-a-zaman
+https://www.ali-sons.com/en/automotive
+https://www.ali-sons.com/en/values-history
+https://www.ali-sons.com/en/energy-and-industrial
+https://www.ali-sons.com/ar
+https://www.ali-sons.com/
+https://www.ali-sons.com/ar-news/xpeng-tstaard-mstqbl-ltnql-fy-mw-tmr-dby-laalmy-lltnql-ldhty
+https://www.ali-sons.com/ar/automotive
+https://www.ali-sons.com/ar-news/ltmyz-fy-lslm-njh-tmryn-lkhl-ltry-fy-shrk-aaly-w-wldh-llmqwlt
+https://www.ali-sons.com/en/real-estate-retail-investment
+https://www.ali-sons.com/en-real-estate-retail-investment/amwaj-jewellery
+https://www.ali-sons.com/en/automotive
+https://www.ali-sons.com/en/values-history
+https://www.ali-sons.com/en-real-estate-retail-investment/ali-sons-real-estate
+https://www.ali-sons.com/en-energy-industrial/rosetti-ali-sons
+https://www.ali-sons.com/en-energy-industrial/muhur-house-trading-oil-field-supplies-services-company-l-l-c
+https://www.ali-sons.com/en-energy-industrial/emarat-aloula-contracting-co
+https://www.ali-sons.com/en-energy-industrial/ali-sons-marine-engineering-factory
+https://www.ali-sons.com/en/energy-and-industrial
+https://www.ali-sons.com/en-energy-industrial/oil-field-supplies-services-company
+https://www.ali-sons.com/en-energy-industrial/ali-sons-contracting
+https://www.ali-sons.com/en-energy-industrial/oilfield-equipment-manufacturing
+https://www.ali-sons.com/en-real-estate-retail-investment/ali-sons-real-estate
+https://www.ali-sons.com/en-energy-industrial/ali-sons-interiors
+https://www.ali-sons.com/en-energy-industrial/emarat-aloula-contracting-co
+https://www.ali-sons.com/en-energy-industrial/muhur-house-trading-oil-field-supplies-services-company-l-l-c
+https://www.ali-sons.com/en-energy-industrial/rosetti-ali-sons
+https://www.ali-sons.com/en-energy-industrial/ali-sons-marine-engineering-factory
+https://www.ali-sons.com/en-energy-industrial/ali-sons-contracting
+https://www.ali-sons.com/en-energy-industrial/oil-field-supplies-services-company
+https://www.ali-sons.com/en-real-estate-retail-investment/gtm.js
+https://www.ali-sons.com/en-energy-industrial/oilfield-equipment-manufacturing
+https://www.ali-sons.com/en-energy-industrial/ali-sons-interiors
+https://www.ali-sons.com/en-real-estate-retail-investment/amwaj-jewellery
+https://www.ali-sons.com/en-energy-industrial/emarat-aloula-industries
+https://www.ali-sons.com/ar-people/mohammed-bin-ali-al-dhaheri
+https://www.ali-sons.com/en-automotive/eurostar-rent-a-car
+https://www.ali-sons.com/en-automotive/xpeng
+https://www.ali-sons.com/en-energy-industrial/gtm.js
+https://asos.ali-sons.com/
+https://www.ali-sons.com/en-automotive/mg
+https://www.ali-sons.com/en-automotive/skoda
+https://www.ali-sons.com/en-energy-industrial/emarat-aloula-industries
+https://asc.ali-sons.com
+https://www.ali-sons.com/en-automotive/xpeng
+https://www.ali-sons.com/en-automotive/eurostar-rent-a-car
+https://www.ali-sons.com/en-automotive/volkswagen
+https://asme.ali-sons.com/
+https://www.ali-sons.com/en-automotive/audi
+https://www.ali-sons.com/en-automotive/mg
+https://www.rosettiali-sons.com/
+https://www.ali-sons.com/en-automotive/skoda
+https://www.ali-sons.com/en-news/mg-distributors-conference-2023
+https://www.ali-sons.com/en-automotive/porsche
+https://www.ali-sons.com/en-automotive/volkswagen
+https://asi.ali-sons.com/
+https://www.ali-sons.com/en-news/iem-two-years-of-unmatched-success
+https://www.ali-sons.com/en-automotive/audi
+https://www.ali-sons.com/en-news/inter-emirates-motors-unveils-the-all-new-mg-one
+https://www.ali-sons.com/en-automotive/gtm.js
+https://www.ali-sons.com/en-automotive/service/layer/body-repair.html
+https://www.ali-sons.com/en-automotive/porsche
+https://www.ali-sons.com/en-news/become-the-proud-owner-of-a-bespoke-porsche-cayenne-e1
+https://www.ali-sons.com/en-real-estate-retail-investment/capital-management
+https://www.ali-sons.com/ar-automotive/eurostar-rent-a-car
+https://www.ali-sons.com/ar-automotive/xpeng
+https://www.ali-sons.com/en-news/vw-the-official-sponsor-of-al-wahda-football-club
+https://www.ali-sons.com/ar-automotive/mg
+https://www.ali-sons.com/en-news/audi-wins-2022-dealer-of-the-year
+https://www.ali-sons.com/en-news/porsche-importer-of-the-year-2nd-position
+https://www.ali-sons.com/ar-automotive/skoda
+https://www.ali-sons.com/en-news/mysterious-new-test-pilot-aims-to-record-fastest-laps-in-a-porsche
+https://www.ali-sons.com/en-real-estate-retail-investment/capital-management
+https://www.ali-sons.com/ar-automotive/volkswagen
+https://www.ali-sons.com/ar-automotive/porsche
+https://www.ali-sons.com/ar-automotive/audi
+https://www.ali-sons.com/en-news/the-skoda-octavia-vrs-at-the-dubai-autodrome

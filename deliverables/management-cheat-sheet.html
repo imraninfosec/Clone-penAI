@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Pentest Platform - Management Cheat Sheet</title>
+  <style>
+    :root {
+      --bg: #0f2f1f;
+      --surface: #153c28;
+      --line: #2d6b48;
+      --ink: #eefcf4;
+      --ink-soft: #cde8d9;
+      --accent: #7ce0ad;
+      --warn: #ffd58a;
+    }
+
+    * { box-sizing: border-box; }
+
+    @page { size: A4; margin: 12mm; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(135deg, #0c2418, #123b27 55%, #1e5f3d);
+      min-height: 100vh;
+      padding: 18px;
+    }
+
+    .sheet {
+      max-width: 980px;
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      padding: 16px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      color: var(--ink-soft);
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.14);
+      padding: 5px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      color: #dbf7e9;
+      background: rgba(255,255,255,0.08);
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      margin: 0 0 12px;
+      color: var(--ink-soft);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      padding: 10px 11px;
+    }
+
+    .card h2 {
+      margin: 0 0 7px;
+      font-size: 15px;
+      letter-spacing: .2px;
+      color: #e7fff3;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #dbf5e7;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    li { margin: 4px 0; }
+
+    .kpi {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .kpi .box {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      background: rgba(255,255,255,0.08);
+      text-align: center;
+    }
+
+    .kpi .n {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+
+    .kpi .l {
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .terms {
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #133623;
+      padding: 10px 11px;
+    }
+
+    .terms h2 {
+      margin: 0 0 7px;
+      font-size: 15px;
+      color: #e9fff5;
+    }
+
+    .term-grid {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 6px 10px;
+      font-size: 13px;
+    }
+
+    .term-grid b { color: #f3fff9; }
+    .term-grid span { color: #d7f1e2; }
+
+    .note {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,213,138,0.45);
+      background: rgba(255,213,138,0.13);
+      color: #ffe5be;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <div class="top">
+      <div class="brand">
+        <img src="./logo2_white.png" alt="logo" />
+        <span>DI - ASH AI Pentest Platform</span>
+      </div>
+      <span class="tag">1-PAGE MANAGEMENT CHEAT SHEET | FEB 11, 2026</span>
+    </div>
+
+    <h1>Technology and Security - Plain Language Overview</h1>
+    <p class="subtitle">
+      This platform runs pentest scans, stores results, and uses local AI to explain risks. It now includes posture heat maps and compliance summary reporting mapped to major frameworks.
+    </p>
+
+    <section class="grid">
+      <article class="card">
+        <h2>What the platform does</h2>
+        <ul>
+          <li>Runs security scans (Nuclei, Nikto, SQLMap, Katana).</li>
+          <li>Tracks scan status/history and keeps evidence.</li>
+          <li>Generates Executive, Technical, Combined, and Compliance Summary reports.</li>
+          <li>Lets teams ask chat questions like "explain report 126" or security-topic questions.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>Current stack (why it helps)</h2>
+        <ul>
+          <li><b>Frontend:</b> HTML/CSS/JS for lightweight dashboard speed.</li>
+          <li><b>Backend:</b> FastAPI + Uvicorn for API and orchestration.</li>
+          <li><b>Database:</b> SQLite for simple local persistence and backup.</li>
+          <li><b>AI:</b> llama.cpp + GGUF for private, low-cost local analysis.</li>
+          <li><b>Posture Layer:</b> Heat map, target risk cards, and framework-aligned compliance mapping.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>Security position (today)</h2>
+        <ul>
+          <li>Role-aware authentication, step-up protection, and password hashing are enabled.</li>
+          <li>Security headers (CSP, nosniff, frame deny, HSTS-on-HTTPS) are present.</li>
+          <li>Scan timeout handling, SQLMap reliability controls, and false-positive suppression are active.</li>
+          <li>Hardening still needed: strict CORS allowlist and long-term scale migration planning.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>Best near-term upgrades</h2>
+        <ul>
+          <li>Restrict CORS to trusted domains only.</li>
+          <li>Maintain strong admin credential rotation policy.</li>
+          <li>Move to PostgreSQL when concurrency/scale increases.</li>
+          <li>Add periodic backup-restore drills and audit review.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="kpi">
+      <div class="box"><div class="n">4</div><div class="l">Core Scan Engines</div></div>
+      <div class="box"><div class="n">4</div><div class="l">Report Types</div></div>
+      <div class="box"><div class="n">1</div><div class="l">Local AI Engine</div></div>
+    </section>
+
+    <section class="terms">
+      <h2>Key terms for leadership</h2>
+      <div class="term-grid">
+        <b>Uvicorn</b><span>The web server that runs the FastAPI application and serves requests on port 8000.</span>
+        <b>Async</b><span>A way to handle many waiting tasks at once (I/O) without blocking the whole server.</span>
+        <b>llama.cpp</b><span>Local runtime that executes AI models on your own machine (no cloud dependency).</span>
+        <b>GGUF</b><span>Model file format optimized for local usage, often quantized to reduce memory usage.</span>
+        <b>SQLite Query</b><span>Simple SQL commands used to read scan history/findings from <code>data/pentest.db</code>.</span>
+      </div>
+    </section>
+
+    <div class="note">
+      Sample SQLite command for audit checks: <code>sqlite3 /opt/ai-pentest/data/pentest.db "SELECT id,target,tool,status,created_at FROM scans ORDER BY id DESC LIMIT 20;"</code>
+    </div>
+  </main>
+</body>
+</html>

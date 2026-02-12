@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Assistant avatar placeholder">
+  <rect width="240" height="240" rx="32" fill="#111827"/>
+  <circle cx="120" cy="92" r="48" fill="#2563eb"/>
+  <path d="M120 56l26 20-10 34h-32L94 76z" fill="#e2e8f0"/>
+  <rect x="44" y="150" width="152" height="44" rx="22" fill="#1e293b"/>
+  <text x="120" y="178" fill="#cbd5e1" font-size="18" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">AI</text>
+</svg>

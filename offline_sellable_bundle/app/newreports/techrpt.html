@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Penetration Test Report - {{COMPANY_NAME}}</title>
+    <link rel="stylesheet" href="report-styles.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+            .page-break { page-break-before: always; page-break-after: auto; }
+        }
+    </style>
+</head>
+<body class="technical-report">
+    <!-- Print Controls -->
+    <div class="print-controls no-print">
+        <button onclick="window.print()" class="print-btn">
+            <i class="fas fa-print"></i> Print Report
+        </button>
+        <button onclick="downloadPDF()" class="download-btn">
+            <i class="fas fa-download"></i> Download PDF
+        </button>
+        <button onclick="window.history.back()" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </button>
+    </div>
+
+    <!-- Cover Page -->
+    <div class="report-page cover-page page-break">
+        <div class="cover-header">
+            <div class="company-logo">
+                <div class="logo-icon"><img src="{{LOGO_SRC}}" alt="{{PRODUCT_BRAND_NAME}} logo" class="report-logo-img"></div>
+                <div class="company-info">
+                    <h1>{{COMPANY_NAME}}</h1>
+                    <p>{{SECURITY_DIVISION}}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cover-content">
+            <div class="report-title-section">
+                <div class="confidentiality-banner">CONFIDENTIAL - TECHNICAL ANALYSIS</div>
+                <h1 class="report-title">
+                    PENETRATION TEST<br/>
+                    <span class="report-subtitle">Technical Report</span>
+                </h1>
+            </div>
+            
+            <div class="target-info">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Target System:</span>
+                        <span class="info-value">{{TARGET_SYSTEM}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Target URL:</span>
+                        <span class="info-value">{{TARGET_URL}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">IP Address:</span>
+                        <span class="info-value">{{TARGET_IP}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Assessment Period:</span>
+                        <span class="info-value">{{ASSESSMENT_PERIOD}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Testing Type:</span>
+                        <span class="info-value">Black-box Penetration Test</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Report Version:</span>
+                        <span class="info-value">1.0</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Lead Tester:</span>
+                        <span class="info-value">Security Operations Team</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Classification:</span>
+                        <span class="info-value classification">CONFIDENTIAL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cover-footer">
+            <div class="compliance-badges">
+                {{COMPLIANCE_BADGES}}
+            </div>
+            <div class="footer-text">
+                <p>This document contains confidential technical information.</p>
+                <p>Distribution limited to authorized security personnel.</p>
+                <p>© 2026 {{COMPANY_NAME}}. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="report-page toc-page page-break">
+        <h1 class="page-title">TABLE OF CONTENTS</h1>
+        
+        <div class="toc-content">
+            {{TOC_BLOCK}}
+        </div>
+    </div>
+
+    <!-- Executive Summary -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">1</h1>
+            <h1 class="section-title">EXECUTIVE SUMMARY</h1>
+        </div>
+        
+        <div class="content-section">
+            <p class="lead-paragraph">
+                This technical report documents the comprehensive security assessment of {{COMPANY_NAME}}'s 
+                {{TARGET_SYSTEM}} conducted between {{ASSESSMENT_PERIOD}}. The assessment identified 
+                <strong class="text-critical">{{TOTAL_FINDINGS}}</strong> vulnerabilities across various severity levels, 
+                with <strong class="text-critical">{{CRITICAL_COUNT}} critical</strong> and <strong class="text-high">{{HIGH_COUNT}} high-risk</strong> 
+                findings requiring immediate remediation.
+            </p>
+            
+            <div class="summary-box">
+                <h3>Key Statistics</h3>
+                <div class="findings-metrics">
+                    <div class="metric-box critical">
+                        <div class="metric-value">{{CRITICAL_COUNT}}</div>
+                        <div class="metric-label">Critical (CVSS 9.0+)</div>
+                    </div>
+                    <div class="metric-box high">
+                        <div class="metric-value">{{HIGH_COUNT}}</div>
+                        <div class="metric-label">High (CVSS 7.0-8.9)</div>
+                    </div>
+                    <div class="metric-box medium">
+                        <div class="metric-value">{{MEDIUM_COUNT}}</div>
+                        <div class="metric-label">Medium (CVSS 4.0-6.9)</div>
+                    </div>
+                    <div class="metric-box low">
+                        <div class="metric-value">{{LOW_COUNT}}</div>
+                        <div class="metric-label">Low/Info (CVSS &lt;4.0)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="summary-box" style="margin-top: 2rem;">
+                <h3>Assessment Coverage</h3>
+                <table class="tools-table coverage-table">
+                    <thead>
+                        <tr>
+                            <th>Assessment Area</th>
+                            <th>Tests Performed</th>
+                            <th>Coverage</th>
+                            <th>Findings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{COVERAGE_ROWS}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assessment Methodology -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">2</h1>
+            <h1 class="section-title">ASSESSMENT METHODOLOGY</h1>
+        </div>
+        
+        <div class="content-section">
+            <p class="section-intro">
+                This assessment followed industry-standard penetration testing methodologies and frameworks to 
+                ensure comprehensive coverage of security vulnerabilities.
+            </p>
+            
+            <div class="summary-box">
+                <h3>Standards & Frameworks</h3>
+                {{METHODOLOGY_STANDARDS_BLOCK}}
+            </div>
+            
+            <div class="summary-box">
+                <h3>Testing Phases</h3>
+                <table class="matrix-table testing-phases-table">
+                    <thead>
+                        <tr>
+                            <th>Phase</th>
+                            <th>Duration</th>
+                            <th>Activities</th>
+                            <th>Deliverables</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{TESTING_PHASE_ROWS}}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="summary-box">
+                <h3>Tools & Technologies</h3>
+                <table class="tools-table tools-tech-catalog">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Tool</th>
+                            <th>Version</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{TOOLS_ROWS}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scope & Limitations -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">3</h1>
+            <h1 class="section-title">SCOPE & LIMITATIONS</h1>
+        </div>
+        <div class="content-section">
+            <div class="summary-box">
+                <h3>In-Scope Targets</h3>
+                <ul>
+                    <li><strong>Primary Target:</strong> {{TARGET_URL}}</li>
+                    <li><strong>Target Type:</strong> {{TARGET_SYSTEM}}</li>
+                    <li><strong>Assessment Window:</strong> {{ASSESSMENT_PERIOD}}</li>
+                    <li><strong>Tooling Scope:</strong> {{TOOLS_USED}}</li>
+                </ul>
+            </div>
+            <div class="summary-box">
+                <h3>Assessment Limitations</h3>
+                <ul>
+                    <li>The assessment is automated and evidence-driven; manual exploitation depth is outside this report unless explicitly stated.</li>
+                    <li>Findings represent conditions observed during the stated assessment period and may change after remediation or environment updates.</li>
+                    <li>Network controls, WAF behavior, and target availability may influence scan coverage and result visibility.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vulnerability Summary -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">4</h1>
+            <h1 class="section-title">VULNERABILITY SUMMARY</h1>
+        </div>
+        <div class="content-section">
+            <p class="section-intro">{{RISK_SUMMARY_PARAGRAPH}}</p>
+            <div class="summary-box">
+                <h3>Severity Distribution</h3>
+                <div class="findings-metrics">
+                    <div class="metric-box critical">
+                        <div class="metric-value">{{CRITICAL_COUNT}}</div>
+                        <div class="metric-label">Critical</div>
+                    </div>
+                    <div class="metric-box high">
+                        <div class="metric-value">{{HIGH_COUNT}}</div>
+                        <div class="metric-label">High</div>
+                    </div>
+                    <div class="metric-box medium">
+                        <div class="metric-value">{{MEDIUM_COUNT}}</div>
+                        <div class="metric-label">Medium</div>
+                    </div>
+                    <div class="metric-box low">
+                        <div class="metric-value">{{LOW_COUNT}}</div>
+                        <div class="metric-label">Low / Info</div>
+                    </div>
+                </div>
+            </div>
+            <div class="vulnerability-distribution">
+                <h3>Finding Counts by Severity</h3>
+                <div class="chart-container">
+                    <div class="bar-chart">
+                        <div class="bar-item">
+                            <div class="bar-label">Critical</div>
+                            <div class="bar-wrapper">
+                                <div class="bar critical" style="width: {{CRITICAL_BAR_WIDTH}};">
+                                    <span class="bar-value">{{CRITICAL_COUNT}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">High</div>
+                            <div class="bar-wrapper">
+                                <div class="bar high" style="width: {{HIGH_BAR_WIDTH}};">
+                                    <span class="bar-value">{{HIGH_COUNT}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Medium</div>
+                            <div class="bar-wrapper">
+                                <div class="bar medium" style="width: {{MEDIUM_BAR_WIDTH}};">
+                                    <span class="bar-value">{{MEDIUM_COUNT}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Low / Info</div>
+                            <div class="bar-wrapper">
+                                <div class="bar low" style="width: {{LOW_BAR_WIDTH}};">
+                                    <span class="bar-value">{{LOW_COUNT}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Findings -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">5</h1>
+            <h1 class="section-title">DETAILED FINDINGS</h1>
+        </div>
+        <div class="content-section">
+            {{DETAILED_FINDINGS_BLOCK}}
+        </div>
+    </div>
+
+    <!-- Remediation Roadmap -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">6</h1>
+            <h1 class="section-title">REMEDIATION ROADMAP</h1>
+        </div>
+        <div class="content-section">
+            {{REMEDIATION_BLOCK}}
+        </div>
+    </div>
+
+    <!-- Technical Appendices -->
+    <div class="report-page">
+        <div class="page-header">
+            <h1 class="section-number">7</h1>
+            <h1 class="section-title">TECHNICAL APPENDICES</h1>
+        </div>
+        <div class="content-section">
+            <div class="appendix-section">
+                <h3>A. Report Metadata</h3>
+                <div class="report-metadata">
+                    <p><strong>Report ID:</strong> {{REPORT_ID}}</p>
+                    <p><strong>Classification:</strong> CONFIDENTIAL</p>
+                    <p><strong>Audience:</strong> CIDO / IT Security / Senior Management</p>
+                    <p><strong>Distribution:</strong> CIDO &amp; Senior Management</p>
+                    <p><strong>Generated:</strong> {{REPORT_DATE}}</p>
+                    <p><strong>Retest Scheduled:</strong> {{RETEST_DATE}}</p>
+                </div>
+            </div>
+            <div class="appendix-section">
+                <h3>B. Tooling Reference</h3>
+                <table class="tools-table">
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>Version</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{TOOLS_APPENDIX_ROWS}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="appendix-section">
+                <h3>C. Glossary</h3>
+                <dl class="glossary">
+                    {{GLOSSARY_BLOCK}}
+                </dl>
+            </div>
+        </div>
+    </div>
+    <script>
+        function downloadPDF() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

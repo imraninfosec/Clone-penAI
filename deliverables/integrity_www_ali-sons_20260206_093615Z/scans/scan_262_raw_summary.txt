@@ -1,0 +1,19 @@
+Raw Scan Report (AI Summary)
+Scan ID: 262
+Target: https://www.ali-sons.com
+Tool: nuclei
+Status: completed
+Created: 2026-02-06 01:24 PM
+Completed: 2026-02-06 01:34 PM
+
+AI Summary:
+- [INFO] Scan Completed Without Actionable Output :: No scan output captured.
+
+Findings Summary:
+- [INFO] Scan Completed Without Actionable Output :: No scan output captured.
+
+Errors:
+None
+
+Raw Output:
+No output captured.

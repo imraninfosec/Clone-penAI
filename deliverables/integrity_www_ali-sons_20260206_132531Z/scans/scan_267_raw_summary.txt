@@ -1,0 +1,113 @@
+Raw Scan Report (AI Summary)
+Scan ID: 267
+Target: https://www.ali-sons.com
+Tool: sqlmap
+Status: failed
+Created: 2026-02-06 03:00 PM
+Completed: 2026-02-06 03:23 PM
+
+AI Summary:
+- [INFO] SQLMap blocked by HTTP 403 Forbidden :: SQLMap received HTTP 403 Forbidden from the target (access denied).
+
+Findings Summary:
+- [INFO] SQLMap blocked by HTTP 403 Forbidden :: SQLMap received HTTP 403 Forbidden from the target (access denied).
+
+Errors:
+SQLMap received HTTP 403 Forbidden from the target (access denied). Scan timed out after 900 seconds
+
+Raw Output:
+ting 'Microsoft SQL Server/Sybase time-based blind (IF)'
+[11:21:06] [INFO] testing 'Oracle AND time-based blind'
+[11:21:09] [INFO] testing 'MySQL >= 5.0.12 time-based blind - Parameter replace'
+[11:21:10] [INFO] testing 'Generic UNION query (NULL) - 1 to 10 columns'
+[11:21:17] [INFO] testing 'MySQL UNION query (NULL) - 1 to 10 columns'
+[11:21:25] [WARNING] GET parameter 'Message' does not seem to be injectable
+[11:21:25] [ERROR] all tested parameters do not appear to be injectable. Try to increase values for '--level'/'--risk' options if you wish to perform more tests. If you suspect that there is some kind of protection mechanism involved (e.g. WAF) maybe you could try to use option '--tamper' (e.g. '--tamper=space2comment'), skipping to the next target
+[11:21:25] [WARNING] HTTP error codes detected during run:
+403 (Forbidden) - 1505 times, 406 (Not Acceptable) - 302 times
+[2/8] Form:
+GET https://www.ali-sons.com/en/contact-us?Email=&Message=
+do you want to test this form? [Y/n/q]
+> Y
+Edit GET data [default: Email=&Message=]: Email=&Message=
+do you want to fill blank fields with random values? [Y/n] Y
+[11:21:28] [WARNING] potential CAPTCHA protection mechanism detected
+you have not declared cookie(s), while server wants to set its own ('_cfuvid=QIUnsHPeKbn...-604800000'). Do you want to use those [Y/n] Y
+[11:21:28] [INFO] checking if the target is protected by some kind of WAF/IPS
+[11:21:28] [CRITICAL] WAF/IPS identified as 'CloudFlare'
+are you sure that you want to continue with further target testing? [Y/n] Y
+[11:21:28] [WARNING] please consider usage of tamper scripts (option '--tamper')
+[11:21:28] [INFO] testing if the target URL content is stable
+[11:21:29] [INFO] target URL content is stable
+[11:21:29] [INFO] skipping previously processed GET parameter 'Email'
+[11:21:29] [INFO] skipping previously processed GET parameter 'Message'
+[11:21:29] [ERROR] all tested parameters do not appear to be injectable. Try to increase values for '--level'/'--risk' options if you wish to perform more tests. If you suspect that there is some kind of protection mechanism involved (e.g. WAF) maybe you could try to use option '--tamper' (e.g. '--tamper=space2comment'), skipping to the next target
+[11:21:29] [WARNING] HTTP error codes detected during run:
+403 (Forbidden) - 1 times
+[3/8] Form:
+GET https://www.ali-sons.com/ar/form?name-2=&Number-2=&Email-3=&Emirates-4=&Interested-2=&Brand-2=&Contact-2=&date=&Comments-2=&Agreed-2=on
+do you want to test this form? [Y/n/q]
+> Y
+Edit GET data [default: name-2=&Number-2=&Email-3=&Emirates-4=&Interested-2=&Brand-2=&Contact-2=&date=&Comments-2=&Agreed-2=on]: name-2=&Number-2=&Email-3=&Emirates-4=&Interested-2=&Brand-2=&Contact-2=&date=&Comments-2=&Agreed-2=on
+do you want to fill blank fields with random values? [Y/n] Y
+[11:21:31] [WARNING] potential CAPTCHA protection mechanism detected
+you have not declared cookie(s), while server wants to set its own ('_cfuvid=xQhGM2iaNK6...-604800000'). Do you want to use those [Y/n] Y
+[11:21:31] [INFO] checking if the target is protected by some kind of WAF/IPS
+[11:21:32] [CRITICAL] WAF/IPS identified as 'CloudFlare'
+are you sure that you want to continue with further target testing? [Y/n] Y
+[11:21:32] [WARNING] please consider usage of tamper scripts (option '--tamper')
+[11:21:32] [INFO] testing if the target URL content is stable
+[11:21:33] [INFO] target URL content is stable
+[11:21:33] [INFO] testing if GET parameter 'name-2' is dynamic
+[11:21:35] [WARNING] GET parameter 'name-2' does not appear to be dynamic
+[11:21:37] [WARNING] heuristic (basic) test shows that GET parameter 'name-2' might not be injectable
+[11:21:40] [INFO] testing for SQL injection on GET parameter 'name-2'
+[11:21:40] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'
+[11:21:47] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause (subquery - comment)'
+[11:21:52] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause (comment)'
+[11:21:56] [INFO] testing 'MySQL RLIKE boolean-based blind - WHERE, HAVING, ORDER BY or GROUP BY clause'
+[11:22:03] [INFO] testing 'PostgreSQL AND boolean-based blind - WHERE or HAVING clause (CAST)'
+[11:22:09] [INFO] testing 'Oracle AND boolean-based blind - WHERE or HAVING clause (CTXSYS.DRITHSX.SN)'
+[11:22:15] [INFO] testing 'SQLite AND boolean-based blind - WHERE, HAVING, GROUP BY or HAVING clause (JSON)'
+[11:22:21] [INFO] testing 'Boolean-based blind - Parameter replace (original value)'
+[11:22:22] [INFO] testing 'Boolean-based blind - Parameter replace (DUAL)'
+[11:22:22] [INFO] testing 'Boolean-based blind - Parameter replace (CASE)'
+[11:22:23] [INFO] testing 'MySQL >= 5.0 boolean-based blind - ORDER BY, GROUP BY clause'
+[11:22:24] [INFO] testing 'PostgreSQL boolean-based blind - ORDER BY, GROUP BY clause'
+[11:22:24] [INFO] testing 'MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)'
+[11:22:27] [INFO] testing 'MySQL >= 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXTRACTVALUE)'
+[11:22:30] [INFO] testing 'PostgreSQL AND error-based - WHERE or HAVING clause'
+[11:22:32] [INFO] testing 'Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (IN)'
+[11:22:35] [INFO] testing 'Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (CONVERT)'
+[11:22:38] [INFO] testing 'Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (CONCAT)'
+[11:22:41] [INFO] testing 'Oracle AND error-based - WHERE or HAVING clause (XMLType)'
+[11:22:44] [INFO] testing 'Oracle AND error-based - WHERE or HAVING clause (UTL_INADDR.GET_HOST_ADDRESS)'
+[11:22:47] [INFO] testing 'MySQL >= 5.1 error-based - PROCEDURE ANALYSE (EXTRACTVALUE)'
+[11:22:50] [INFO] testing 'MySQL >= 5.0 error-based - Parameter replace (FLOOR)'
+[11:22:50] [INFO] testing 'MySQL >= 5.1 error-based - Parameter replace (EXTRACTVALUE)'
+[11:22:50] [INFO] testing 'PostgreSQL error-based - Parameter replace'
+[11:22:50] [INFO] testing 'Microsoft SQL Server/Sybase error-based - Stacking (EXEC)'
+[11:22:52] [INFO] testing 'Generic inline queries'
+[11:22:53] [INFO] testing 'MySQL inline queries'
+[11:22:53] [INFO] testing 'PostgreSQL inline queries'
+[11:22:53] [INFO] testing 'Microsoft SQL Server/Sybase inline queries'
+[11:22:53] [INFO] testing 'Oracle inline queries'
+[11:22:53] [INFO] testing 'MySQL >= 5.0.12 stacked queries (comment)'
+[11:23:00] [INFO] testing 'PostgreSQL > 8.1 stacked queries (comment)'
+[11:23:02] [INFO] testing 'Microsoft SQL Server/Sybase stacked queries (comment)'
+[11:23:04] [INFO] testing 'Microsoft SQL Server/Sybase stacked queries (DECLARE - comment)'
+[11:23:07] [INFO] testing 'Oracle stacked queries (DBMS_PIPE.RECEIVE_MESSAGE - comment)'
+[11:23:09] [INFO] testing 'MySQL >= 5.0.12 AND time-based blind (query SLEEP)'
+[11:23:12] [INFO] testing 'MySQL >= 5.0.12 AND time-based blind (SLEEP)'
+[11:23:18] [INFO] GET parameter 'name-2' appears to be 'MySQL >= 5.0.12 AND time-based blind (SLEEP)' injectable
+it looks like the back-end DBMS is 'MySQL'. Do you want to skip test payloads specific for other DBMSes? [Y/n] Y
+for the remaining tests, do you want to include all tests for 'MySQL' extending provided level (2) and risk (1) values? [Y/n] Y
+[11:23:18] [INFO] testing 'Generic UNION query (NULL) - 1 to 20 columns'
+[11:23:18] [INFO] automatically extending ranges for UNION query injection technique tests as there is at least one other (potential) technique found
+[11:23:24] [INFO] testing 'Generic UNION query (NULL) - 21 to 40 columns'
+[11:23:29] [INFO] checking if the injection point on GET parameter 'name-2' is a false positive
+[11:23:29] [WARNING] false positive or unexploitable injection point detected
+[11:23:29] [WARNING] GET parameter 'name-2' does not seem to be injectable
+[11:23:29] [INFO] testing if GET parameter 'Number-2' is dynamic
+[11:23:30] [WARNING] GET parameter 'Number-2' does not appear to be dynamic
+[11:23:32] [WARNING] heuristic (basic) test shows that GET parameter 'Number-2' might not be injectable

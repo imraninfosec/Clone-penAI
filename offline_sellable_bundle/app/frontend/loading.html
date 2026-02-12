@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Platform - Loading</title>
+
+<script>
+(function () {
+  try {
+    var key = 'dih_theme';
+    var saved = localStorage.getItem(key);
+    var theme = (saved === 'light' || saved === 'dark') ? saved : null;
+    if (!theme) {
+      theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch (e) {}
+})();
+</script>
+
+    <style>
+html[data-theme="light"] body{background: radial-gradient(900px 600px at 20% 10%, rgba(34,197,94,0.12), transparent 55%), radial-gradient(900px 600px at 90% 0%, rgba(59,130,246,0.10), transparent 60%), #f6f8fb; color: rgba(15,23,42,0.92);} 
+html[data-theme="light"] .loading-container{background: rgba(255,255,255,0.92); border-color: rgba(15,23,42,0.12);} 
+html[data-theme="light"] .loading-subtitle{color: rgba(15,23,42,0.70);} 
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0e27;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.12), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(0, 209, 255, 0.08), transparent 42%),
+                linear-gradient(160deg, #090d20 0%, #121a35 52%, #0a1027 100%);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+
+        /* Animated grid background */
+        .grid-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Scanning lines effect */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent,
+                rgba(0, 255, 255, 0.9) 28%,
+                rgba(64, 255, 232, 0.98) 50%,
+                rgba(0, 255, 255, 0.9) 72%,
+                transparent
+            );
+            transform: translate3d(0, -14vh, 0);
+            animation: scanFast 1.35s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+            box-shadow: 0 0 9px rgba(0, 255, 255, 0.55), 0 0 24px rgba(0, 255, 255, 0.26);
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .scan-line::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 12%;
+            width: 76%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(153, 255, 248, 0.76), transparent);
+            animation: scanFastTrail 1.35s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+        }
+
+        @keyframes scanFast {
+            0% {
+                transform: translate3d(0, -14vh, 0);
+                opacity: 0;
+            }
+            12% {
+                opacity: 1;
+            }
+            88% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate3d(0, 114vh, 0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes scanFastTrail {
+            0% { opacity: 0; }
+            18% { opacity: 0.55; }
+            84% { opacity: 0.55; }
+            100% { opacity: 0; }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: float linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(1);
+            }
+        }
+
+        /* Main content container */
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+            width: min(700px, 92vw);
+            padding: 22px 22px 18px;
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45), inset 0 0 60px rgba(0, 255, 255, 0.08);
+            backdrop-filter: blur(7px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.34s ease, transform 0.34s ease, filter 0.34s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logo/Shield */
+        .shield-container {
+            position: relative;
+            width: 112px;
+            height: 112px;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .loading-logo {
+            width: 112px;
+            height: 112px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 14px rgba(0, 255, 255, 0.45));
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px #00ffff);
+            }
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 25px #00ffff);
+            }
+        }
+
+        .shield-icon { display: none; }
+
+        /* Title */
+        .title {
+            font-size: clamp(1.75rem, 3.5vw, 2.05rem);
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 1px;
+            letter-spacing: 0.4px;
+            text-transform: none;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            animation: titleGlow 2s ease-in-out infinite;
+            max-width: 100%;
+            white-space: normal;
+            overflow-wrap: anywhere;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(0.82rem, 1.55vw, 0.92rem);
+            color: #9fe9ff;
+            letter-spacing: 0.35px;
+            margin-bottom: 12px;
+            opacity: 0.95;
+            line-height: 1.4;
+            max-width: 80%;
+        }
+
+        /* Terminal-style loading text */
+        .terminal {
+            background: rgba(4, 10, 23, 0.72);
+            border: 1px solid rgba(0, 255, 255, 0.32);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin: 6px auto 4px;
+            max-width: 560px;
+            width: min(560px, 90%);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+            text-align: left;
+            transition: opacity 0.38s ease, transform 0.38s ease;
+        }
+
+        .terminal-line {
+            color: #00ff00;
+            font-size: clamp(0.9rem, 1.55vw, 0.98rem);
+            line-height: 1.45;
+            margin: 3px 0;
+            opacity: 0;
+            animation: terminalType 0.5s forwards;
+            letter-spacing: 0.15px;
+            white-space: normal;
+        }
+
+        .terminal-line:nth-child(1) { animation-delay: 0.5s; }
+        .terminal-line:nth-child(2) { animation-delay: 1s; }
+        .terminal-line:nth-child(3) { animation-delay: 1.5s; }
+        .terminal-line:nth-child(4) { animation-delay: 2s; }
+        .terminal-line:nth-child(5) { animation-delay: 2.5s; }
+
+        @keyframes terminalType {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 14px;
+            background: #00ff00;
+            margin-left: 5px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Progress bar */
+        .progress-container {
+            width: min(560px, 90%);
+            height: 6px;
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 10px auto 6px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            position: relative;
+            transition: opacity 0.38s ease, transform 0.38s ease;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, 
+                #00ffff 0%, 
+                #00ff88 50%, 
+                #00ffff 100%
+            );
+            border-radius: 10px;
+            animation: progress 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes progress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            color: #00ffff;
+            font-size: clamp(0.8rem, 1.35vw, 0.9rem);
+            margin-top: 3px;
+            letter-spacing: 0.55px;
+            transition: opacity 0.38s ease, transform 0.38s ease;
+        }
+
+        .kali-finale {
+            position: absolute;
+            inset: 0;
+            z-index: 30;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0;
+            transform: scale(1.07);
+            filter: blur(6px);
+            pointer-events: none;
+            transition:
+                opacity 0.48s ease,
+                transform 0.74s cubic-bezier(0.2, 0.72, 0.18, 1),
+                filter 0.48s ease;
+        }
+
+        .kali-impact-ring {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 90px;
+            height: 90px;
+            border: 2px solid rgba(125, 250, 255, 0.55);
+            border-radius: 999px;
+            transform: translate(-50%, -50%) scale(0.4);
+            opacity: 0;
+        }
+
+        .kali-finale-logo-wrap {
+            position: relative;
+            width: min(1100px, 96vw);
+            margin: 0 auto 10px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .kali-finale-logo {
+            width: 100%;
+            max-width: 1040px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 14px rgba(74, 222, 128, 0.35));
+        }
+
+        .kali-finale-text {
+            color: #e0fbff;
+            font-size: clamp(1.22rem, 2.3vw, 1.72rem);
+            letter-spacing: 1.85px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-shadow: 0 0 16px rgba(71, 230, 255, 0.38);
+        }
+
+        .kali-finale-subtext {
+            color: rgba(176, 239, 255, 0.88);
+            margin-top: 6px;
+            font-size: clamp(0.86rem, 1.35vw, 1.02rem);
+            letter-spacing: 0.72px;
+        }
+
+        .loading-container.kali-sequence .content {
+            opacity: 0;
+            transform: scale(0.95);
+            filter: blur(5px);
+        }
+
+        .loading-container.kali-sequence .terminal,
+        .loading-container.kali-sequence .progress-container,
+        .loading-container.kali-sequence .progress-text {
+            opacity: 0;
+            transform: translateY(-12px);
+        }
+
+        .grid-background,
+        .scan-line,
+        .hex-decoration,
+        .particle {
+            transition: opacity 0.36s ease;
+        }
+
+        .loading-container.kali-sequence .grid-background,
+        .loading-container.kali-sequence .scan-line,
+        .loading-container.kali-sequence .hex-decoration,
+        .loading-container.kali-sequence .particle {
+            opacity: 0.12;
+        }
+
+        .loading-container.kali-sequence .kali-finale {
+            opacity: 1;
+            transform: scale(1);
+            filter: none;
+        }
+
+        .loading-container.kali-sequence .kali-impact-ring {
+            animation: kaliImpactRing 0.95s cubic-bezier(0.15, 0.72, 0.16, 1) both;
+        }
+
+        .loading-container.kali-sequence .kali-finale-logo-wrap {
+            animation: kaliStrikeIn 1.15s cubic-bezier(0.14, 0.76, 0.18, 1) both;
+        }
+
+        .loading-container.kali-sequence .kali-finale-logo {
+            animation: kaliGlide 1.2s cubic-bezier(0.17, 0.78, 0.16, 1) both, kaliAura 1.9s ease-in-out 1.15s infinite;
+        }
+
+        @keyframes kaliStrikeIn {
+            0% {
+                transform: perspective(1000px) rotateX(18deg) scale(0.56);
+                opacity: 0.2;
+            }
+            50% {
+                transform: perspective(1000px) rotateX(-2deg) scale(1.06);
+                opacity: 1;
+            }
+            100% {
+                transform: perspective(1000px) rotateX(0deg) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes kaliImpactRing {
+            0% {
+                transform: translate(-50%, -50%) scale(0.35);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(4.8);
+                opacity: 0;
+            }
+        }
+
+        @keyframes kaliGlide {
+            0% {
+                transform: translateY(210px) scale(0.28);
+                filter: blur(7px) drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+            }
+            55% {
+                transform: translateY(-8px) scale(1.19);
+                filter: blur(0) drop-shadow(0 0 38px rgba(63, 231, 255, 0.56));
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                filter: blur(0) drop-shadow(0 0 16px rgba(23, 227, 255, 0.48));
+            }
+        }
+
+        @keyframes kaliAura {
+            0%, 100% { filter: drop-shadow(0 0 14px rgba(23, 227, 255, 0.44)); }
+            50% { filter: drop-shadow(0 0 24px rgba(108, 254, 210, 0.5)); }
+        }
+
+        /* Hexagon decorations */
+        .hex-decoration {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0.06;
+            animation: rotate 20s linear infinite;
+        }
+
+        .hex-decoration:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-duration: 15s;
+        }
+
+        .hex-decoration:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-duration: 20s;
+            animation-direction: reverse;
+        }
+
+        .hex-decoration:nth-child(3) {
+            bottom: 15%;
+            left: 15%;
+            animation-duration: 25s;
+        }
+
+        .hex-decoration:nth-child(4) {
+            bottom: 10%;
+            right: 10%;
+            animation-duration: 18s;
+            animation-direction: reverse;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Loading complete fade out */
+        .loading-container.complete {
+            animation: fadeOut 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                transform: scale(1.015);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                width: min(720px, 94vw);
+                padding: 18px 14px 14px;
+                gap: 6px;
+            }
+            .title { font-size: 1.45rem; }
+            .subtitle {
+                font-size: 0.74rem;
+                margin-bottom: 8px;
+                letter-spacing: 0.2px;
+                max-width: 88%;
+            }
+            .progress-container {
+                width: 90%;
+            }
+            .terminal {
+                width: 90%;
+                padding: 11px 12px;
+                margin-top: 4px;
+            }
+            .terminal-line {
+                font-size: 0.76rem;
+                line-height: 1.35;
+            }
+            .shield-container {
+                width: 84px;
+                height: 84px;
+                margin-bottom: 6px;
+            }
+            .loading-logo {
+                width: 84px;
+                height: 84px;
+            }
+            .kali-finale {
+                width: 100%;
+            }
+            .kali-finale-logo-wrap {
+                width: min(98vw, 700px);
+                padding: 0;
+            }
+            .kali-finale-text {
+                font-size: 1.02rem;
+                letter-spacing: 1.1px;
+            }
+            .kali-finale-subtext {
+                font-size: 0.76rem;
+                letter-spacing: 0.48px;
+            }
+            .terminal-line:nth-child(4) {
+                display: none;
+            }
+        }
+    </style>
+<script>
+  (function(){
+    try{
+      var t = localStorage.getItem('dih_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', (t==='light')?'light':'dark');
+    }catch(e){}
+  })();
+</script>
+</head>
+<body>
+    <div class="loading-container" id="loadingScreen">
+        <!-- Grid background -->
+        <div class="grid-background"></div>
+        
+        <!-- Scanning line -->
+        <div class="scan-line"></div>
+        
+        <!-- Hexagon decorations -->
+        <svg class="hex-decoration" viewBox="0 0 100 100">
+            <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" 
+                     fill="none" stroke="#00ffff" stroke-width="1"/>
+        </svg>
+        <svg class="hex-decoration" viewBox="0 0 100 100">
+            <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" 
+                     fill="none" stroke="#00ffff" stroke-width="1"/>
+        </svg>
+        <svg class="hex-decoration" viewBox="0 0 100 100">
+            <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" 
+                     fill="none" stroke="#00ffff" stroke-width="1"/>
+        </svg>
+        <svg class="hex-decoration" viewBox="0 0 100 100">
+            <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" 
+                     fill="none" stroke="#00ffff" stroke-width="1"/>
+        </svg>
+
+        <!-- Main content -->
+        <div class="content">
+            <!-- Shield logo -->
+            <div class="shield-container">
+                <img src="/static/branding/brand_logo_dark.svg?v=1" alt="Brand logo placeholder" class="loading-logo" data-logo-dark="/static/branding/brand_logo_dark.svg?v=1" data-logo-light="/static/branding/brand_logo_light.svg?v=1">
+<style>html[data-theme="light"] img.loading-logo{filter: invert(1) hue-rotate(180deg) saturate(0) brightness(0.2);} </style>
+            </div>
+
+            <!-- Title -->
+            <div class="title">Cybersecurity Platform</div>
+            <div class="subtitle">Automated Security Validation and Reporting</div>
+
+            <!-- Terminal output -->
+            <div class="terminal">
+                <div class="terminal-line">Initializing security modules...</div>
+                <div class="terminal-line">Validating scan engines...</div>
+                <div class="terminal-line">Starting AI analysis services...</div>
+                <div class="terminal-line">Preparing reporting workspace...</div>
+                <div class="terminal-line">✓ System ready<span class="terminal-cursor"></span></div>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            <div class="progress-text">SECURING CONNECTION...</div>
+        </div>
+        <div class="kali-finale" aria-hidden="true">
+            <div class="kali-impact-ring"></div>
+            <div class="kali-finale-logo-wrap">
+                <img src="/static/branding/brand_mark_dark.svg?v=1" alt="Brand mark placeholder" class="kali-finale-logo" data-logo-dark="/static/branding/brand_mark_dark.svg?v=1" data-logo-light="/static/branding/brand_mark_light.svg?v=1">
+            </div>
+            <div class="kali-finale-text">BRAND SECURITY COMMAND</div>
+            <div class="kali-finale-subtext">AI-powered pentest intelligence for executive leadership</div>
+        </div>
+    </div>
+
+    <script>
+        // Apply theme-specific logos in this standalone page.
+        (function () {
+            try {
+                const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+                document.querySelectorAll('img[data-logo-dark][data-logo-light]').forEach((img) => {
+                    const src = (theme === 'light') ? img.getAttribute('data-logo-light') : img.getAttribute('data-logo-dark');
+                    if (src) img.setAttribute('src', src);
+                });
+            } catch (e) {}
+        })();
+
+        // Create floating particles
+        function createParticles() {
+            const container = document.querySelector('.loading-container');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Auto-hide loading screen with finale sequence.
+        const loadingScreen = document.getElementById('loadingScreen');
+        setTimeout(() => {
+            loadingScreen.classList.add('kali-sequence');
+            setTimeout(() => {
+                loadingScreen.classList.add('complete');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    console.log('Loading complete - main application ready');
+                }, 520);
+            }, 1650);
+        }, 3600);
+
+        // Optional: You can also trigger this manually with:
+        // window.hideLoadingScreen = function() {
+        //     document.getElementById('loadingScreen').classList.add('complete');
+        // }
+    </script>
+</body>
+</html>

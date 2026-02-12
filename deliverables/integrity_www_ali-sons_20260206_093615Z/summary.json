@@ -1,0 +1,66 @@
+{
+  "scan_ids": {
+    "katana": 260,
+    "nikto": 261,
+    "nuclei": 262,
+    "sqlmap": 263
+  },
+  "findings": {
+    "katana": {
+      "counts": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "info": 1
+      },
+      "lines": [
+        "- [INFO] Endpoint Discovery - 118 Endpoints Discovered :: https://www.ali-sons.com/ar-news/njz-shhd-leed-gold-w-estidama-3-pearls-lmbn-mrkz-lbtkr-m10b https://www.ali-sons.com/ar-news/shrk-asc-tkrwm-mshryaa-lrbaa-l-wl-"
+      ]
+    },
+    "nikto": {
+      "counts": {
+        "critical": 0,
+        "high": 0,
+        "medium": 2,
+        "low": 0,
+        "info": 1
+      },
+      "lines": [
+        "- [INFO] Scanner Runtime Error :: + ERROR: Error limit (20) reached for host, giving up. Last error: opening stream: ssl connect failed",
+        "- [MEDIUM] Deprecated Clickjacking Header Configuration :: + /:X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive instead. See: https://",
+        "- [MEDIUM] Missing MIME Sniffing Protection Header :: + /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. Se"
+      ]
+    },
+    "nuclei": {
+      "counts": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "info": 1
+      },
+      "lines": [
+        "- [INFO] Scan Completed Without Actionable Output :: No scan output captured."
+      ]
+    },
+    "sqlmap": {
+      "counts": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "info": 1
+      },
+      "lines": [
+        "- [INFO] No SQL Injection Evidence Detected :: SQLMap automated SQL injection checks (level 1, risk 1). Techniques tested: standard SQLMap suite. Form discovery enabled. No injectable parameters were confirm"
+      ]
+    }
+  },
+  "statuses": {
+    "katana": "completed",
+    "nikto": "completed",
+    "nuclei": "completed",
+    "sqlmap": "completed"
+  }
+}

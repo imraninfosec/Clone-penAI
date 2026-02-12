@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Penetration Test Report - {{COMPANY_NAME}}</title>
+    <link rel="stylesheet" href="report-styles.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+            .page-break { page-break-before: always; page-break-after: auto; }
+        }
+    </style>
+</head>
+<body class="executive-report">
+    <!-- Print Controls -->
+    <div class="print-controls no-print">
+        <button onclick="window.print()" class="print-btn">
+            <i class="fas fa-print"></i> Print Report
+        </button>
+        <button onclick="downloadPDF()" class="download-btn">
+            <i class="fas fa-download"></i> Download PDF
+        </button>
+        <button onclick="window.history.back()" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </button>
+    </div>
+
+    <!-- Cover Page -->
+    <div class="report-page cover-page page-break">
+        <div class="cover-header">
+            <div class="company-logo">
+                <div class="logo-icon"><img src="{{LOGO_SRC}}" alt="{{PRODUCT_BRAND_NAME}} logo" class="report-logo-img"></div>
+                <div class="company-info">
+                    <h1>{{COMPANY_NAME}}</h1>
+                    <p>{{SECURITY_DIVISION}}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cover-content">
+            <div class="report-title-section">
+                <div class="confidentiality-banner">CONFIDENTIAL - EXECUTIVE SUMMARY</div>
+                <h1 class="report-title">
+                    PENETRATION TEST<br/>
+                    <span class="report-subtitle">Executive Summary Report</span>
+                </h1>
+            </div>
+            
+            <div class="target-info">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Target System:</span>
+                        <span class="info-value">{{TARGET_SYSTEM}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Target URL:</span>
+                        <span class="info-value">{{TARGET_URL}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Assessment Period:</span>
+                        <span class="info-value">{{ASSESSMENT_PERIOD}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Report Date:</span>
+                        <span class="info-value">{{REPORT_DATE}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Report Version:</span>
+                        <span class="info-value">1.0</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Classification:</span>
+                        <span class="info-value classification">CONFIDENTIAL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cover-footer">
+            <div class="compliance-badges">
+                {{COMPLIANCE_BADGES}}
+            </div>
+            <div class="footer-text">
+                <p>This document contains confidential and proprietary information.</p>
+                <p>© 2026 {{COMPANY_NAME}}. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="report-page toc-page page-break">
+        <h1 class="page-title">TABLE OF CONTENTS</h1>
+        
+        <div class="toc-content">
+            {{TOC_BLOCK}}
+        </div>
+    </div>
+
+    <!-- Executive Summary -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">1</h1>
+            <h1 class="section-title">EXECUTIVE SUMMARY</h1>
+        </div>
+        
+        <div class="content-section">
+            <p class="lead-paragraph">
+                {{COMPANY_NAME}}'s {{SECURITY_DIVISION}} conducted a comprehensive penetration 
+                testing assessment of the {{TARGET_SYSTEM}} (<strong>{{TARGET_URL}}</strong>) during 
+                the period of {{ASSESSMENT_PERIOD}}. This executive report presents the risk posture,
+                business impact themes, and prioritized remediation focus areas derived from observed scan evidence.
+            </p>
+            
+            <div class="summary-box">
+                <h3>Assessment Scope</h3>
+                <div class="scope-grid">
+                    <div class="scope-item">
+                        <div class="scope-icon">🎯</div>
+                        <div class="scope-details">
+                            <strong>Target System</strong>
+                            <p>{{TARGET_SYSTEM}}</p>
+                        </div>
+                    </div>
+                    <div class="scope-item">
+                        <div class="scope-icon">🔧</div>
+                        <div class="scope-details">
+                            <strong>Testing Tools</strong>
+                            <p>{{TOOLS_USED}}</p>
+                        </div>
+                    </div>
+                    <div class="scope-item">
+                        <div class="scope-icon">📅</div>
+                        <div class="scope-details">
+                            <strong>Duration</strong>
+                            <p>{{DURATION_TEXT}}</p>
+                        </div>
+                    </div>
+                    <div class="scope-item">
+                        <div class="scope-icon">📊</div>
+                        <div class="scope-details">
+                            <strong>Assessment Type</strong>
+                            <p>{{ASSESSMENT_TYPE}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-findings-summary">
+                <h3>Key Findings at a Glance</h3>
+                <div class="findings-metrics">
+                    <div class="metric-box critical">
+                        <div class="metric-value">{{CRITICAL_COUNT}}</div>
+                        <div class="metric-label">Critical Issues</div>
+                    </div>
+                    <div class="metric-box high">
+                        <div class="metric-value">{{HIGH_COUNT}}</div>
+                        <div class="metric-label">High Risk</div>
+                    </div>
+                    <div class="metric-box medium">
+                        <div class="metric-value">{{MEDIUM_COUNT}}</div>
+                        <div class="metric-label">Medium Risk</div>
+                    </div>
+                    <div class="metric-box low">
+                        <div class="metric-value">{{LOW_COUNT}}</div>
+                        <div class="metric-label">Low Risk / Info</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overall Risk Assessment -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">2</h1>
+            <h1 class="section-title">OVERALL RISK ASSESSMENT</h1>
+        </div>
+        
+        <div class="content-section">
+            <div class="risk-indicator-section">
+                <div class="risk-gauge risk-meter-card">
+                    <div class="risk-meter-header">
+                        <h2>OVERALL RISK LEVEL</h2>
+                        <div class="risk-badge {{OVERALL_RISK_CLASS}}">{{OVERALL_RISK_LEVEL}}</div>
+                    </div>
+                    <p class="risk-score">CVSS v4.0 Reference Score: {{RISK_SCORE}}</p>
+                    <div class="risk-meter-track">
+                        <div class="risk-meter-gradient"></div>
+                        <div class="risk-meter-marker {{OVERALL_RISK_CLASS}}" style="left: {{RISK_METER_PERCENT}};"></div>
+                    </div>
+                    <div class="risk-meter-scale">
+                        <span>0</span>
+                        <span>3.9</span>
+                        <span>6.9</span>
+                        <span>8.9</span>
+                        <span>10</span>
+                    </div>
+                    <div class="risk-meter-bands">
+                        <span class="band low">Low</span>
+                        <span class="band medium">Medium</span>
+                        <span class="band high">High</span>
+                        <span class="band critical">Critical</span>
+                    </div>
+                </div>
+                
+                <div class="risk-explanation risk-context-card">
+                    <h3>RISK SUMMARY</h3>
+                    <p>{{RISK_SUMMARY_PARAGRAPH}}</p>
+                    <p class="risk-context-footnote">Narrative generated from observed findings, severity distribution, and CVSS v4.0 scoring context.</p>
+                </div>
+            </div>
+            
+            <div class="vulnerability-distribution">
+                <h3>Vulnerability Distribution by Severity</h3>
+                <div class="chart-container">
+                    <div class="bar-chart">
+                        <div class="bar-item">
+                            <div class="bar-label">Critical</div>
+                            <div class="bar-wrapper">
+                        <div class="bar critical" style="width: {{CRITICAL_BAR_WIDTH}};">
+                                    <span class="bar-value">{{CRITICAL_COUNT}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">High</div>
+                            <div class="bar-wrapper">
+                        <div class="bar high" style="width: {{HIGH_BAR_WIDTH}};">
+                                    <span class="bar-value">{{HIGH_COUNT}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Medium</div>
+                            <div class="bar-wrapper">
+                        <div class="bar medium" style="width: {{MEDIUM_BAR_WIDTH}};">
+                                    <span class="bar-value">{{MEDIUM_COUNT}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Low</div>
+                            <div class="bar-wrapper">
+                        <div class="bar low" style="width: {{LOW_BAR_WIDTH}};">
+                                    <span class="bar-value">{{LOW_COUNT}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Findings -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">3</h1>
+            <h1 class="section-title">HIGH-LEVEL FINDINGS OVERVIEW</h1>
+        </div>
+        
+        <div class="content-section">
+            <p class="section-intro">
+                This section highlights the most material observations for executive decision-making.
+                It focuses on risk posture, business relevance, and remediation priority without deep technical detail.
+            </p>
+            
+            {{KEY_FINDINGS_BLOCK}}
+        </div>
+    </div>
+
+    <!-- Business Impact Summary -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">4</h1>
+            <h1 class="section-title">BUSINESS IMPACT SUMMARY</h1>
+        </div>
+
+        <div class="content-section">
+            <p class="section-intro">
+                This impact summary maps the observed findings to business outcomes and treatment priorities.
+            </p>
+            {{BUSINESS_IMPACT_BLOCK}}
+        </div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">5</h1>
+            <h1 class="section-title">RECOMMENDATIONS</h1>
+        </div>
+
+        <div class="content-section">
+            {{RECOMMENDATIONS_BLOCK}}
+        </div>
+    </div>
+
+    <!-- Compliance Status -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">6</h1>
+            <h1 class="section-title">COMPLIANCE ALIGNMENT</h1>
+        </div>
+
+        <div class="content-section">
+            <p class="section-intro">{{COMPLIANCE_PROFILE_INTRO}}</p>
+            {{COMPLIANCE_ALIGNMENT_BLOCK}}
+        </div>
+    </div>
+
+    <!-- Conclusion -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">7</h1>
+            <h1 class="section-title">CONCLUSION</h1>
+        </div>
+
+        <div class="content-section">
+            <p class="lead-paragraph">
+                This assessment provides a clear view of the current risk posture and prioritized remediation actions.
+                Address critical and high findings promptly, validate fixes, and maintain a continuous testing cycle.
+            </p>
+        </div>
+    </div>
+
+    <!-- Appendix -->
+    <div class="report-page page-break">
+        <div class="page-header">
+            <h1 class="section-number">8</h1>
+            <h1 class="section-title">APPENDIX</h1>
+        </div>
+        
+        <div class="content-section">
+            <div class="appendix-section">
+                <h3>A. Assessment Context</h3>
+                {{EXECUTIVE_CONTEXT_BLOCK}}
+            </div>
+            
+            <div class="appendix-section">
+                <h3>B. Tools and Technologies</h3>
+                <table class="tools-table">
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>Version</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{TOOLS_APPENDIX_ROWS}}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="appendix-section">
+                <h3>C. Glossary of Terms</h3>
+                <dl class="glossary">
+                    {{GLOSSARY_BLOCK}}
+                </dl>
+            </div>
+            
+            <div class="appendix-section">
+                <h3>D. Contact Information</h3>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h4>CIDO - Chief information Digital Officer</h4>
+                        <p>Email: security@example.com</p>
+                        <p>Phone: +971-XX-XXX-XXXX (Ext. 1001)</p>
+                    </div>
+                    <div class="contact-card">
+                        <h4>Security Operations Team</h4>
+                        <p>Email: security@example.com</p>
+                        <p>Phone: +971-XX-XXX-XXXX (Ext. 2000)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Page -->
+    <div class="report-page final-page">
+        <div class="final-content">
+            <div class="confidentiality-notice">
+                <h2>CONFIDENTIALITY NOTICE</h2>
+                <p>
+                    This document and the information contained herein is confidential and proprietary to 
+                    {{COMPANY_NAME}}. This document is intended solely for the use of authorized 
+                    personnel within the organization and may not be reproduced, distributed, or disclosed 
+                    to third parties without prior written consent.
+                </p>
+                <p>
+                    Unauthorized access, use, disclosure, or distribution of this document may result in 
+                    legal action and is subject to applicable laws and regulations.
+                </p>
+            </div>
+            
+            <div class="signatures-section">
+                <h3>Report Approval</h3>
+                <div class="signature-grid">
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-name">CIDO - Chief information Digital Officer</p>
+                        <p class="signature-date">Date: _____________</p>
+                    </div>
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <p class="signature-name">IT Security</p>
+                        <p class="signature-date">Date: _____________</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="report-metadata">
+                <p><strong>Report ID:</strong> {{REPORT_ID}}</p>
+                <p><strong>Classification:</strong> CONFIDENTIAL</p>
+                <p><strong>Audience:</strong> CIDO / IT Security / Senior Management</p>
+                <p><strong>Distribution:</strong> CIDO &amp; Senior Management</p>
+                <p><strong>Generated:</strong> {{REPORT_DATE}}</p>
+                <p><strong>Next Review:</strong> {{NEXT_REVIEW_DATE}}</p>
+            </div>
+            
+            <div class="company-footer">
+                <div class="footer-logo"><img src="{{LOGO_SRC}}" alt="{{PRODUCT_BRAND_NAME}} logo" class="report-logo-footer"></div>
+                <p class="footer-company">{{COMPANY_NAME}}</p>
+                <p class="footer-division">{{SECURITY_DIVISION}}</p>
+                <p class="footer-location">Abu Dhabi, United Arab Emirates</p>
+                <p class="footer-copyright">© 2026 All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

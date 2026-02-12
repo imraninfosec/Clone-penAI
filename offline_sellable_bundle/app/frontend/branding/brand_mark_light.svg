@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Brand mark placeholder light">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>
+  <rect width="240" height="240" rx="40" fill="#ffffff"/>
+  <rect x="6" y="6" width="228" height="228" rx="34" fill="#f8fafc" stroke="#cbd5e1"/>
+  <circle cx="120" cy="120" r="84" fill="url(#g)"/>
+  <path d="M120 62l44 36-16 56H92l-16-56z" fill="#ffffff"/>
+</svg>

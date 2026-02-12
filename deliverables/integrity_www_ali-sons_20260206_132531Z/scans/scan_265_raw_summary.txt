@@ -1,0 +1,51 @@
+Raw Scan Report (AI Summary)
+Scan ID: 265
+Target: https://www.ali-sons.com
+Tool: nikto
+Status: completed
+Created: 2026-02-06 03:00 PM
+Completed: 2026-02-06 03:08 PM
+
+AI Summary:
+- [INFO] Scanner Runtime Error :: + ERROR: Error limit (20) reached for host, giving up. Last error: opening stream: ssl connect failed
+- [MEDIUM] Deprecated Clickjacking Header Configuration :: + /:X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive instead. See: https://
+- [MEDIUM] Missing MIME Sniffing Protection Header :: + /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. Se
+
+Findings Summary:
+- [INFO] Scanner Runtime Error :: + ERROR: Error limit (20) reached for host, giving up. Last error: opening stream: ssl connect failed
+- [MEDIUM] Deprecated Clickjacking Header Configuration :: + /:X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive instead. See: https://
+- [MEDIUM] Missing MIME Sniffing Protection Header :: + /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. Se
+
+Errors:
++ ERROR: Error limit (20) reached for host, giving up. Last error: opening stream: ssl connect failed
+
+Raw Output:
+- Nikto v2.5.0
+---------------------------------------------------------------------------
++ Target IP:          13.203.125.58
++ Target Hostname:    www.ali-sons.com
++ Target Port:        443
+---------------------------------------------------------------------------
++ SSL Info:           Subject:  /CN=www.ali-sons.com
+                      Altnames: www.ali-sons.com
+                      Ciphers:  TLS_AES_256_GCM_SHA384
+                      Issuer:   /C=US/O=Google Trust Services/CN=WE1
++ Start Time:         2026-02-06 11:03:49 (GMT0)
+---------------------------------------------------------------------------
++ Server: cloudflare
++ Multiple IPs found: 13.203.125.58, 3.109.243.18, 13.233.175.166
++ /: IP address found in the '_cfuvid' cookie. The IP is "0.0.1.1".
++ /: IP address found in the 'set-cookie' header. The IP is "0.0.1.1". See: https://portswigger.net/kb/issues/00600300_private-ip-addresses-disclosed
++ /:X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive instead. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
++ /: Uncommon header(s) 'surrogate-key' found, with contents: www.ali-sons.com 63b6ad58a2acb515e1682af0 pageId:63b7f29133958e8ae005cfdf 63db71ac2819677c1ce30d32 63e37e114794ef13fb892e6f.
++ /: Uncommon header(s) 'x-lambda-id' found, with contents: 96050d14-45eb-4bd4-a49e-fd197ecde0d1.
++ /: Uncommon header(s) 'surrogate-control' found, with contents: max-age=432000.
++ /: An alt-svc header was found which is advertising HTTP/3. The endpoint is: ':443'. Nikto cannot test HTTP/3 over QUIC. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/alt-svc
++ /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/
++ All CGI directories 'found', use '-C none' to test none
+- STATUS: Completed 340 requests (~5% complete, 1.4 hours left): currently in plugin 'Site Files'
+- STATUS: Running average: Not enough data.
++ Scan terminated: 20 error(s) and 8 item(s) reported on remote host
++ End Time:           2026-02-06 11:08:02 (GMT0) (253 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested

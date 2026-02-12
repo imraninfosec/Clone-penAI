@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" role="img" aria-label="Brand logo placeholder light">
+  <rect width="640" height="180" rx="20" fill="#f8fafc"/>
+  <rect x="18" y="18" width="604" height="144" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+  <circle cx="92" cy="90" r="42" fill="#2563eb"/>
+  <path d="M92 58l22 18-8 28H78l-8-28z" fill="#f8fafc"/>
+  <text x="160" y="84" fill="#0f172a" font-size="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">YOUR COMPANY</text>
+  <text x="160" y="118" fill="#475569" font-size="20" font-family="Arial, Helvetica, sans-serif">Replace this placeholder with your brand logo</text>
+</svg>
